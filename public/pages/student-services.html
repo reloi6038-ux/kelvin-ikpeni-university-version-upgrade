@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Student services at Kelvin Ikpeni University." />
+  <title>Student Services | Kelvin Ikpeni University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body data-page="student-services">
+  <header class="site-header"><div class="container header__inner">
+    <a href="/" class="logo"><span class="logo__crest">K</span><span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span></a>
+    <nav class="main-nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/pages/campus-life.html" class="nav-link">Campus Life</a>
+      <a href="/pages/student-services.html" class="nav-link">Services</a>
+      <a href="/pages/contact.html" class="nav-link">Contact</a>
+    </nav>
+    <div class="header__actions" data-auth-actions></div>
+    <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+  </div></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--color-accent);">Support</span>
+      <h1 style="color:#fff;">Student Services</h1>
+      <p>Supporting you beyond the classroom.</p>
+    </div>
+  </section>
+
+  <section class="section section--lg"><div class="container container--narrow">
+    <p>We are committed to your wellbeing and success. Our student services team provides support across health, counselling, careers, and academic life.</p>
+
+    <div class="grid grid--2 mt-7">
+      <div class="card" style="padding:var(--space-6);">
+        <div class="faculty-card__icon" style="margin:0 0 var(--space-4) 0;"><i class="fas fa-heart-pulse"></i></div>
+        <h3>Health &amp; Wellbeing</h3>
+        <p class="text-muted">On-campus medical services, health education, and referral support.</p>
+      </div>
+      <div class="card" style="padding:var(--space-6);">
+        <div class="faculty-card__icon" style="margin:0 0 var(--space-4) 0;"><i class="fas fa-comments"></i></div>
+        <h3>Counselling</h3>
+        <p class="text-muted">Confidential counselling for personal, academic, and career concerns.</p>
+      </div>
+      <div class="card" style="padding:var(--space-6);">
+        <div class="faculty-card__icon" style="margin:0 0 var(--space-4) 0;"><i class="fas fa-briefcase"></i></div>
+        <h3>Career Services</h3>
+        <p class="text-muted">CV workshops, job fairs, and internship placement.</p>
+      </div>
+      <div class="card" style="padding:var(--space-6);">
+        <div class="faculty-card__icon" style="margin:0 0 var(--space-4) 0;"><i class="fas fa-hands-holding-child"></i></div>
+        <h3>Disability Support</h3>
+        <p class="text-muted">Accessibility support and inclusive learning resources.</p>
+      </div>
+      <div class="card" style="padding:var(--space-6);">
+        <div class="faculty-card__icon" style="margin:0 0 var(--space-4) 0;"><i class="fas fa-shield-halved"></i></div>
+        <h3>Campus Safety</h3>
+        <p class="text-muted">24/7 security, emergency response, and safe transport.</p>
+      </div>
+      <div class="card" style="padding:var(--space-6);">
+        <div class="faculty-card__icon" style="margin:0 0 var(--space-4) 0;"><i class="fas fa-chart-line"></i></div>
+        <h3>Academic Advising</h3>
+        <p class="text-muted">Guidance on course selection, academic progress, and careers.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <footer class="site-footer"><div class="container"><div class="footer__bottom" style="border:none;"><div>© <span id="year"></span> Kelvin Ikpeni University.</div></div></div></footer>
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

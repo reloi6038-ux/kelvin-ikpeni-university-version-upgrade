@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Research and innovation at Kelvin Ikpeni University." />
+  <title>Research | Kelvin Ikpeni University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body data-page="research">
+  <header class="site-header"><div class="container header__inner">
+    <a href="/" class="logo"><span class="logo__crest">K</span><span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span></a>
+    <nav class="main-nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/pages/about.html" class="nav-link">About</a>
+      <a href="/pages/faculties.html" class="nav-link">Academics</a>
+      <a href="/pages/admissions.html" class="nav-link">Admissions</a>
+      <a href="/pages/research.html" class="nav-link">Research</a>
+      <a href="/pages/news.html" class="nav-link">News</a>
+      <a href="/pages/contact.html" class="nav-link">Contact</a>
+    </nav>
+    <div class="header__actions" data-auth-actions></div>
+    <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+  </div></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--color-accent);">Research &amp; Innovation</span>
+      <h1 style="color:#fff;">Research That Matters</h1>
+      <p>Advancing knowledge that serves society.</p>
+    </div>
+  </section>
+
+  <section class="section section--lg"><div class="container container--narrow">
+    <p>From artificial intelligence and renewable energy to public health and social policy, KIU researchers tackle the pressing challenges of our time. Our centres of excellence publish in top journals, patent innovations, and partner with industry and government across the continent.</p>
+
+    <div class="grid grid--3 mt-7">
+      <div class="card" style="padding:var(--space-5);">
+        <div class="faculty-card__icon" style="margin:0 0 var(--space-3) 0;"><i class="fas fa-flask"></i></div>
+        <h4>Research Centres</h4>
+        <p class="text-muted" style="font-size:var(--fs-sm);">Twelve centres and institutes across priority disciplines.</p>
+        <a href="/pages/research-centres.html" class="text-accent mt-3" style="font-weight:600;font-size:var(--fs-sm);display:inline-block;">Explore <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="card" style="padding:var(--space-5);">
+        <div class="faculty-card__icon" style="margin:0 0 var(--space-3) 0;"><i class="fas fa-file-lines"></i></div>
+        <h4>Publications</h4>
+        <p class="text-muted" style="font-size:var(--fs-sm);">450+ peer-reviewed publications annually.</p>
+        <a href="/pages/publications.html" class="text-accent mt-3" style="font-weight:600;font-size:var(--fs-sm);display:inline-block;">View <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="card" style="padding:var(--space-5);">
+        <div class="faculty-card__icon" style="margin:0 0 var(--space-3) 0;"><i class="fas fa-handshake"></i></div>
+        <h4>Partnerships</h4>
+        <p class="text-muted" style="font-size:var(--fs-sm);">60+ industry &amp; international partners.</p>
+        <a href="/pages/international.html" class="text-accent mt-3" style="font-weight:600;font-size:var(--fs-sm);display:inline-block;">Learn more <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <h2 class="mt-7">Research Areas</h2>
+    <ul style="display:flex;flex-direction:column;gap:.75rem;">
+      <li><i class="fas fa-check" style="color:var(--color-emerald);margin-right:.6rem;"></i> Artificial Intelligence &amp; Data Science</li>
+      <li><i class="fas fa-check" style="color:var(--color-emerald);margin-right:.6rem;"></i> Renewable Energy &amp; Sustainability</li>
+      <li><i class="fas fa-check" style="color:var(--color-emerald);margin-right:.6rem;"></i> Public Health &amp; Epidemiology</li>
+      <li><i class="fas fa-check" style="color:var(--color-emerald);margin-right:.6rem;"></i> Engineering &amp; Advanced Materials</li>
+      <li><i class="fas fa-check" style="color:var(--color-emerald);margin-right:.6rem;"></i> Governance, Policy &amp; Society</li>
+      <li><i class="fas fa-check" style="color:var(--color-emerald);margin-right:.6rem;"></i> Business, Economics &amp; Entrepreneurship</li>
+    </ul>
+  </div></section>
+
+  <footer class="site-footer"><div class="container"><div class="footer__bottom" style="border:none;"><div>© <span id="year"></span> Kelvin Ikpeni University.</div></div></div></footer>
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

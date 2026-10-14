@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Manage Content | Admin | Kelvin Ikpeni University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body data-page="admin-content">
+  <header class="site-header"><div class="container header__inner">
+    <a href="/" class="logo"><span class="logo__crest">K</span><span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span></a>
+    <nav class="main-nav">
+      <a href="/pages/admin-dashboard.html" class="nav-link">Dashboard</a>
+      <a href="/pages/admin-users.html" class="nav-link">Users</a>
+      <a href="/pages/admin-applications.html" class="nav-link">Applications</a>
+      <a href="/pages/admin-content.html" class="nav-link">Content</a>
+      <a href="/pages/admin-announcements.html" class="nav-link">Announcements</a>
+    </nav>
+    <div class="header__actions" data-auth-actions></div>
+    <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+  </div></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--color-accent);">Admin</span>
+      <h1 style="color:#fff;">Manage Content</h1>
+      <p>Publish and manage news articles and events.</p>
+    </div>
+  </section>
+
+  <section class="section section--lg">
+    <div class="container">
+      <div class="flex gap-3 mb-6 flex-wrap">
+        <button class="btn btn--accent" id="newNewsBtn"><i class="fas fa-plus"></i> New Article</button>
+        <button class="btn btn--primary" id="newEventBtn"><i class="fas fa-plus"></i> New Event</button>
+      </div>
+
+      <div class="card" style="padding:var(--space-6);">
+        <h3 style="margin-bottom:var(--space-4);">News Articles</h3>
+        <div id="newsAdminList"><div class="loading-state"><span class="spinner spinner--dark"></span></div></div>
+      </div>
+
+      <div class="card mt-6" style="padding:var(--space-6);">
+        <h3 style="margin-bottom:var(--space-4);">Events</h3>
+        <div id="eventsAdminList"><div class="loading-state"><span class="spinner spinner--dark"></span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS EDITOR MODAL -->
+  <div id="newsModal" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:var(--z-modal);display:grid;place-items:center;padding:var(--space-5);">
+    <div class="card" style="max-width:720px;width:100%;max-height:85vh;overflow-y:auto;padding:var(--space-6);">
+      <div class="flex justify-between items-center mb-5">
+        <h3 style="margin:0;" id="newsModalTitle">New Article</h3>
+        <button class="btn btn--ghost btn--sm" data-close-modal="newsModal"><i class="fas fa-xmark"></i></button>
+      </div>
+      <form id="newsForm">
+        <input type="hidden" id="newsId" />
+        <div class="form-group">
+          <label class="form-label">Title</label>
+          <input type="text" id="newsTitle" class="form-control" required maxlength="220" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select id="newsCategory" class="form-select">
+              <option value="general">General</option>
+              <option value="campus">Campus</option>
+              <option value="research">Research</option>
+              <option value="sports">Sports</option>
+              <option value="alumni">Alumni</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Image URL (optional)</label>
+            <input type="url" id="newsImage" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Excerpt</label>
+          <textarea id="newsExcerpt" class="form-textarea" rows="2" maxlength="400"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Body</label>
+          <textarea id="newsBody" class="form-textarea" rows="8" required></textarea>
+        </div>
+        <div class="form-check mb-5">
+          <input type="checkbox" id="newsPublished" checked />
+          <label for="newsPublished">Publish immediately</label>
+        </div>
+        <div class="flex gap-3 flex-wrap">
+          <button type="submit" class="btn btn--accent" id="newsSaveBtn">Save Article</button>
+          <button type="button" class="btn btn--ghost" data-close-modal="newsModal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- EVENT EDITOR MODAL -->
+  <div id="eventModal" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:var(--z-modal);display:grid;place-items:center;padding:var(--space-5);">
+    <div class="card" style="max-width:720px;width:100%;max-height:85vh;overflow-y:auto;padding:var(--space-6);">
+      <div class="flex justify-between items-center mb-5">
+        <h3 style="margin:0;" id="eventModalTitle">New Event</h3>
+        <button class="btn btn--ghost btn--sm" data-close-modal="eventModal"><i class="fas fa-xmark"></i></button>
+      </div>
+      <form id="eventForm">
+        <input type="hidden" id="eventId" />
+        <div class="form-group">
+          <label class="form-label">Title</label>
+          <input type="text" id="eventTitle" class="form-control" required maxlength="220" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Start Date</label>
+            <input type="datetime-local" id="eventStartDate" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select id="eventCategory" class="form-select">
+              <option value="academic">Academic</option>
+              <option value="cultural">Cultural</option>
+              <option value="sports">Sports</option>
+              <option value="conference">Conference</option>
+              <option value="workshop">Workshop</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Venue</label>
+            <input type="text" id="eventVenue" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Location</label>
+            <input type="text" id="eventLocation" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea id="eventDescription" class="form-textarea" rows="6" required></textarea>
+        </div>
+        <div class="form-check mb-5">
+          <input type="checkbox" id="eventPublished" checked />
+          <label for="eventPublished">Publish immediately</label>
+        </div>
+        <div class="flex gap-3 flex-wrap">
+          <button type="submit" class="btn btn--accent" id="eventSaveBtn">Save Event</button>
+          <button type="button" class="btn btn--ghost" data-close-modal="eventModal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer"><div class="container"><div class="footer__bottom" style="border:none;"><div>© <span id="year"></span> Kelvin Ikpeni University.</div></div></div></footer>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/admin.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

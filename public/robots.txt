@@ -1,0 +1,23 @@
+# Kelvin Ikpeni University — robots.txt
+# https://kiu.edu.ng
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /pages/admin-
+Disallow: /pages/admin-users.html
+Disallow: /pages/admin-applications.html
+Disallow: /pages/admin-content.html
+Disallow: /pages/admin-announcements.html
+Disallow: /pages/student-dashboard.html
+Disallow: /pages/lecturer-dashboard.html
+Disallow: /pages/applicant-dashboard.html
+Disallow: /pages/profile.html
+Disallow: /pages/reset-password.html
+Disallow: /pages/forgot-password.html
+
+# Crawl delay to be polite
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://kiu.edu.ng/sitemap.xml

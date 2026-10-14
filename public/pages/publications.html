@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Publications from Kelvin Ikpeni University." />
+  <title>Publications | Kelvin Ikpeni University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body data-page="publications">
+  <header class="site-header"><div class="container header__inner">
+    <a href="/" class="logo"><span class="logo__crest">K</span><span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span></a>
+    <nav class="main-nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/pages/research.html" class="nav-link">Research</a>
+      <a href="/pages/publications.html" class="nav-link">Publications</a>
+      <a href="/pages/research-centres.html" class="nav-link">Centres</a>
+      <a href="/pages/contact.html" class="nav-link">Contact</a>
+    </nav>
+    <div class="header__actions" data-auth-actions></div>
+    <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+  </div></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--color-accent);">Research Output</span>
+      <h1 style="color:#fff;">Publications</h1>
+      <p>Peer-reviewed work from KIU faculty and researchers.</p>
+    </div>
+  </section>
+
+  <section class="section section--lg"><div class="container container--narrow">
+    <p>Our faculty publish in leading national and international journals, contributing to knowledge across every discipline we teach.</p>
+
+    <div class="card mt-6" style="padding:var(--space-6);border-left:4px solid var(--color-accent);">
+      <h3><i class="fas fa-circle-info" style="color:var(--color-accent-dark);margin-right:.5rem;"></i> Publications Catalogue Coming Soon</h3>
+      <p class="text-muted">A searchable institutional repository of publications, theses, and dissertations is being developed. In the interim, please contact individual faculties or the Research Office for specific publication enquiries.</p>
+      <a href="/pages/contact.html" class="btn btn--primary mt-4">Contact Research Office</a>
+    </div>
+
+    <h2 class="mt-7">Where We Publish</h2>
+    <ul style="display:flex;flex-direction:column;gap:.75rem;">
+      <li><i class="fas fa-book" style="color:var(--color-secondary);margin-right:.6rem;"></i> International peer-reviewed journals</li>
+      <li><i class="fas fa-book-open" style="color:var(--color-secondary);margin-right:.6rem;"></i> Conference proceedings</li>
+      <li><i class="fas fa-file-lines" style="color:var(--color-secondary);margin-right:.6rem;"></i> Academic monographs</li>
+      <li><i class="fas fa-lightbulb" style="color:var(--color-secondary);margin-right:.6rem;"></i> Policy briefs and reports</li>
+    </ul>
+  </div></section>
+
+  <footer class="site-footer"><div class="container"><div class="footer__bottom" style="border:none;"><div>© <span id="year"></span> Kelvin Ikpeni University.</div></div></div></footer>
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

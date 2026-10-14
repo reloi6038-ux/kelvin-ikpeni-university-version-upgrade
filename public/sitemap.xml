@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Home -->
+  <url><loc>https://kiu.edu.ng/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+
+  <!-- About -->
+  <url><loc>https://kiu.edu.ng/pages/about.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/founder.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/leadership.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/governance.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/history.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/vision-mission.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/accreditation.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+
+  <!-- Academics -->
+  <url><loc>https://kiu.edu.ng/pages/faculties.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/departments.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/programmes.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/undergraduate.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/postgraduate.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/phd.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/online-learning.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/academic-calendar.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Admissions -->
+  <url><loc>https://kiu.edu.ng/pages/admissions.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/apply.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/entry-requirements.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/tuition-fees.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/scholarships.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/check-status.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/international.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Research -->
+  <url><loc>https://kiu.edu.ng/pages/research.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/publications.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/research-centres.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Campus & Student Life -->
+  <url><loc>https://kiu.edu.ng/pages/campus-life.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/accommodation.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/sports.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/student-services.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/library.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/careers.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- News & Events -->
+  <url><loc>https://kiu.edu.ng/pages/news.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/events.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/announcements.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+
+  <!-- Support & Legal -->
+  <url><loc>https://kiu.edu.ng/pages/contact.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/faqs.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://kiu.edu.ng/pages/accessibility.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>

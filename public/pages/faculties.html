@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore the sixteen faculties of Kelvin Ikpeni University — Science, Computing & Digital Technology, Engineering, Business, Law, Health Sciences, Arts, Education, and more. Each faculty includes departments, programmes, and academic leadership." />
+  <meta name="theme-color" content="#0b1f4b" />
+  <title>Faculties | Kelvin Ikpeni University</title>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Faculties | Kelvin Ikpeni University" />
+  <meta property="og:description" content="Sixteen faculties. One community. Explore the academic structure of Kelvin Ikpeni University." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+
+  <style>
+    /* Page-specific styles for the enhanced faculties layout */
+    .faculty-stat-row {
+      display: flex;
+      gap: var(--space-3);
+      justify-content: center;
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--color-border);
+      font-size: var(--fs-xs);
+      color: var(--color-text-muted);
+    }
+    .faculty-stat-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-weight: 600;
+    }
+    .faculty-stat-row i { color: var(--color-accent-dark); }
+
+    .faculty-feature {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+      padding: var(--space-7);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      margin-bottom: var(--space-6);
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 900px) {
+      .faculty-feature { grid-template-columns: 340px 1fr; }
+    }
+    .faculty-feature::before {
+      content: '';
+      position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
+      background: var(--gradient-gold);
+    }
+    .faculty-feature:hover {
+      box-shadow: var(--shadow-xl);
+      border-color: transparent;
+    }
+
+    .faculty-feature__visual {
+      aspect-ratio: 4/5;
+      border-radius: var(--radius-lg);
+      background: var(--gradient-brand);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      padding: var(--space-6);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      max-width: 340px;
+    }
+    .faculty-feature__visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(201,162,39,0.25), transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(91,42,134,0.35), transparent 45%);
+    }
+    .faculty-feature__visual > * { position: relative; z-index: 2; }
+    .faculty-feature__icon {
+      font-size: 3.5rem;
+      color: var(--color-accent);
+      margin-bottom: var(--space-4);
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    }
+    .faculty-feature__short {
+      font-family: var(--font-display);
+      font-size: var(--fs-2xl);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .faculty-feature__est {
+      font-size: var(--fs-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: rgba(255,255,255,0.75);
+      font-weight: 600;
+    }
+
+    .faculty-feature__body h2 {
+      font-size: clamp(1.5rem, 2.5vw, var(--fs-2xl));
+      margin-bottom: var(--space-3);
+    }
+    .faculty-feature__body p {
+      color: var(--color-text-muted);
+      line-height: var(--lh-relaxed);
+      margin-bottom: var(--space-5);
+    }
+
+    .faculty-feature__meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: var(--space-4);
+      padding: var(--space-5);
+      background: var(--color-surface-alt);
+      border-radius: var(--radius);
+      margin-bottom: var(--space-5);
+    }
+    .faculty-feature__meta-item .label {
+      font-size: var(--fs-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--color-text-muted);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+    .faculty-feature__meta-item .value {
+      font-size: var(--fs-base);
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .faculty-feature__depts {
+      margin-bottom: var(--space-5);
+    }
+    .faculty-feature__depts h4 {
+      font-family: var(--font-body);
+      font-size: var(--fs-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wide);
+      color: var(--color-accent-dark);
+      font-weight: 700;
+      margin-bottom: var(--space-3);
+    }
+    .faculty-feature__depts ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-2);
+      font-size: var(--fs-sm);
+      color: var(--color-text-muted);
+    }
+    .faculty-feature__depts li::before {
+      content: '\f105';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: var(--color-secondary);
+      margin-right: 0.5rem;
+    }
+
+    .faculty-feature__actions {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body data-page="faculties">
+
+  <!-- ===================== TOP BAR ===================== -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__left">
+        <span><i class="fas fa-location-dot"></i> Kelvin Ikpeni City, Nigeria</span>
+        <a href="mailto:info@kiu.edu.ng"><i class="fas fa-envelope"></i> info@kiu.edu.ng</a>
+        <a href="tel:+2348000000000"><i class="fas fa-phone"></i> +234 (0) 800 000 0000</a>
+      </div>
+      <div class="topbar__right">
+        <a href="/pages/academic-calendar.html"><i class="fas fa-calendar-days"></i> Calendar</a>
+        <a href="/pages/library.html"><i class="fas fa-book-open"></i> Library</a>
+        <a href="/pages/portal.html"><i class="fas fa-user-graduate"></i> Portal</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="container header__inner">
+      <a href="/" class="logo" aria-label="Kelvin Ikpeni University — Home">
+        <span class="logo__crest">K</span>
+        <span class="logo__text">
+          <span class="logo__name">Kelvin Ikpeni</span>
+          <span class="logo__sub">University</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <div class="nav-item has-dropdown">
+          <a href="/pages/about.html" class="nav-link">About <i class="fas fa-chevron-down caret"></i></a>
+          <div class="nav-dropdown">
+            <a href="/pages/about.html"><i class="fas fa-landmark"></i> About the University</a>
+            <a href="/pages/founder.html"><i class="fas fa-user-tie"></i> Founder &amp; Vision</a>
+            <a href="/pages/leadership.html"><i class="fas fa-sitemap"></i> Leadership</a>
+            <a href="/pages/governance.html"><i class="fas fa-scale-balanced"></i> Governance</a>
+            <a href="/pages/history.html"><i class="fas fa-clock-rotate-left"></i> History</a>
+            <a href="/pages/vision-mission.html"><i class="fas fa-eye"></i> Vision &amp; Mission</a>
+            <a href="/pages/accreditation.html"><i class="fas fa-certificate"></i> Accreditation</a>
+          </div>
+        </div>
+
+        <div class="nav-item has-mega">
+          <a href="/pages/faculties.html" class="nav-link">Academics <i class="fas fa-chevron-down caret"></i></a>
+          <div class="mega-menu">
+            <div class="mega-menu__grid">
+              <div class="mega-menu__col">
+                <h5>Study Levels</h5>
+                <a href="/pages/undergraduate.html">Undergraduate</a>
+                <a href="/pages/postgraduate.html">Postgraduate</a>
+                <a href="/pages/phd.html">PhD &amp; Research</a>
+                <a href="/pages/online-learning.html">Online Learning</a>
+                <a href="/pages/programmes.html">All Programmes</a>
+              </div>
+              <div class="mega-menu__col">
+                <h5>Faculties</h5>
+                <a href="/pages/faculties.html">All Faculties</a>
+                <a href="/pages/departments.html">Departments</a>
+                <a href="/pages/programmes.html">Programme Directory</a>
+              </div>
+              <div class="mega-menu__col">
+                <h5>Resources</h5>
+                <a href="/pages/academic-calendar.html">Academic Calendar</a>
+                <a href="/pages/library.html">Digital Library</a>
+                <a href="/pages/research.html">Research &amp; Innovation</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="/pages/admissions.html" class="nav-link">Admissions</a>
+        <a href="/pages/research.html" class="nav-link">Research</a>
+        <a href="/pages/campus-life.html" class="nav-link">Campus Life</a>
+        <a href="/pages/news.html" class="nav-link">News</a>
+        <a href="/pages/contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header__actions" data-auth-actions>
+        <a href="/pages/login.html" class="btn btn--ghost btn--sm">Sign In</a>
+        <a href="/pages/apply.html" class="btn btn--accent btn--sm">
+          Apply Now <i class="fas fa-arrow-right btn__arrow"></i>
+        </a>
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== PAGE HERO ===================== -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" style="color:rgba(255,255,255,0.7);">
+        <a href="/" style="color:rgba(255,255,255,0.7);">Home</a>
+        <span class="sep">/</span>
+        <span class="current" style="color:var(--color-accent);">Faculties</span>
+      </nav>
+      <span class="section-label" style="color:var(--color-accent);">Academic Structure</span>
+      <h1 style="color:#fff;">Sixteen Faculties. One Community.</h1>
+      <p>Each faculty is a hub of interdisciplinary collaboration, led by distinguished scholars and practitioners. Explore departments, programmes, and academic leadership.</p>
+    </div>
+  </section>
+
+  <!-- ===================== INTRO ===================== -->
+  <section class="section section--sm">
+    <div class="container">
+      <div class="text-center mx-auto" style="max-width:820px;">
+        <p class="section-subtitle mx-auto">
+          Our faculties bring together scholars, researchers, and practitioners across the
+          full spectrum of academic disciplines — from science and technology to the arts,
+          humanities, business, and professional studies. Below, browse the full list and
+          dive into each faculty's departments, programmes, and academic leadership.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FACULTIES GRID ===================== -->
+  <section class="section section--sm" style="padding-top:0;">
+    <div class="container">
+      <div class="grid grid--3" id="facultyGrid">
+        <div class="loading-state" style="grid-column:1/-1;">
+          <span class="spinner spinner--dark spinner--lg"></span>
+          <span>Loading faculties…</span>
+        </div>
+      </div>
+
+      <div id="emptyState" class="hidden text-center mt-7">
+        <div style="font-size:3rem;color:var(--color-text-muted);">
+          <i class="fas fa-building-columns"></i>
+        </div>
+        <h3 class="mt-4">Faculty listing coming soon</h3>
+        <p class="text-muted mt-2">Our faculty directory will be published here shortly.</p>
+        <a href="/pages/contact.html" class="btn btn--primary mt-5">Contact Admissions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FACULTY DETAIL SHOWCASES ===================== -->
+  <section class="section section--alt section--lg" id="facultyShowcase">
+    <div class="container">
+      <div class="text-center mb-6 reveal">
+        <span class="section-label">Faculty Directory</span>
+        <h2 class="section-title">Explore Each Faculty in Depth</h2>
+        <p class="section-subtitle mx-auto">
+          Departments, academic leadership, and programmes — organized by faculty.
+        </p>
+      </div>
+
+      <div id="facultyFeatureList">
+        <div class="loading-state">
+          <span class="spinner spinner--dark spinner--lg"></span>
+          <span>Loading faculty details…</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPLORE PROGRAMMES CTA ===================== -->
+  <section class="section section--gradient section--lg">
+    <div class="container text-center">
+      <h2 style="color:#fff;margin-bottom:var(--space-3);">Explore Our Full Catalogue</h2>
+      <p style="color:rgba(255,255,255,.88);font-size:var(--fs-lg);max-width:680px;margin-inline:auto;margin-bottom:var(--space-6);">
+        Browse every undergraduate, postgraduate, and online programme across all faculties —
+        with search, filters, and detailed information.
+      </p>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <a href="/pages/programmes.html" class="btn btn--accent btn--xl">
+          <i class="fas fa-book-open"></i> View All Programmes
+        </a>
+        <a href="/pages/departments.html" class="btn btn--outline-light btn--xl">
+          Browse Departments
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHY CHOOSE SECTION ===================== -->
+  <section class="section section--lg">
+    <div class="container">
+      <div class="text-center mb-6 reveal">
+        <span class="section-label">Why KIU Faculties</span>
+        <h2 class="section-title">Built for Depth &amp; Discovery</h2>
+      </div>
+      <div class="grid grid--4">
+        <div class="card" style="padding:var(--space-5);text-align:center;">
+          <div class="faculty-card__icon" style="margin:0 auto var(--space-3);"><i class="fas fa-user-tie"></i></div>
+          <h4 style="margin-bottom:.35rem;">Expert Faculty</h4>
+          <p class="text-muted" style="font-size:var(--fs-sm);">Distinguished scholars and practitioners leading each discipline.</p>
+        </div>
+        <div class="card" style="padding:var(--space-5);text-align:center;">
+          <div class="faculty-card__icon" style="margin:0 auto var(--space-3);"><i class="fas fa-flask"></i></div>
+          <h4 style="margin-bottom:.35rem;">Research Active</h4>
+          <p class="text-muted" style="font-size:var(--fs-sm);">Published research, patents, and collaborative projects across every field.</p>
+        </div>
+        <div class="card" style="padding:var(--space-5);text-align:center;">
+          <div class="faculty-card__icon" style="margin:0 auto var(--space-3);"><i class="fas fa-earth-africa"></i></div>
+          <h4 style="margin-bottom:.35rem;">Global Outlook</h4>
+          <p class="text-muted" style="font-size:var(--fs-sm);">International partnerships, exchanges, and cross-cultural learning.</p>
+        </div>
+        <div class="card" style="padding:var(--space-5);text-align:center;">
+          <div class="faculty-card__icon" style="margin:0 auto var(--space-3);"><i class="fas fa-briefcase"></i></div>
+          <h4 style="margin-bottom:.35rem;">Career Ready</h4>
+          <p class="text-muted" style="font-size:var(--fs-sm);">Industry-aligned curricula, internships, and dedicated career services.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="/" class="logo">
+            <span class="logo__crest">K</span>
+            <span class="logo__text">
+              <span class="logo__name">Kelvin Ikpeni</span>
+              <span class="logo__sub">University</span>
+            </span>
+          </a>
+          <p>Advancing knowledge, innovation, and leadership through world-class education.</p>
+          <div class="footer__socials">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <h4>Academics</h4>
+          <ul>
+            <li><a href="/pages/faculties.html">Faculties</a></li>
+            <li><a href="/pages/departments.html">Departments</a></li>
+            <li><a href="/pages/programmes.html">All Programmes</a></li>
+            <li><a href="/pages/undergraduate.html">Undergraduate</a></li>
+            <li><a href="/pages/postgraduate.html">Postgraduate</a></li>
+            <li><a href="/pages/phd.html">PhD &amp; Research</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/pages/admissions.html">Admissions</a></li>
+            <li><a href="/pages/scholarships.html">Scholarships</a></li>
+            <li><a href="/pages/library.html">Library</a></li>
+            <li><a href="/pages/campus-life.html">Campus Life</a></li>
+            <li><a href="/pages/news.html">News</a></li>
+            <li><a href="/pages/contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul class="footer__contact">
+            <li><i class="fas fa-location-dot"></i><span>Km 25, University Avenue,<br />Kelvin Ikpeni City, Nigeria</span></li>
+            <li><i class="fas fa-phone"></i><span>+234 (0) 800 000 0000</span></li>
+            <li><i class="fas fa-envelope"></i><span>info@kiu.edu.ng</span></li>
+          </ul>
+          <h4 style="margin-top:var(--space-5);">Newsletter</h4>
+          <form class="newsletter-form" data-newsletter-form>
+            <input type="email" placeholder="Your email" required aria-label="Email address" />
+            <button type="submit" class="btn btn--accent btn--sm" aria-label="Subscribe">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <div>© <span id="year"></span> Kelvin Ikpeni University. All rights reserved.</div>
+        <div class="flex gap-4 flex-wrap">
+          <a href="/pages/privacy.html">Privacy Policy</a>
+          <a href="/pages/accessibility.html">Accessibility</a>
+          <a href="/pages/terms.html">Terms of Use</a>
+          <a href="/pages/faqs.html">FAQs</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/catalogue.js"></script>
+
+  <!-- Extra renderer for the faculty detail showcases -->
+  <script>
+    (function () {
+      'use strict';
+
+      const esc = (s) =>
+        String(s || '').replace(/[&<>"']/g, (c) => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+        }[c]));
+
+      // Faculty "specialisations" mapping — used as fallback
+      // when a faculty has no departments yet, so the page still feels complete.
+      const FACULTY_HIGHLIGHTS = {
+        'faculty-of-science': [
+          'Mathematics', 'Statistics', 'Physics', 'Chemistry', 'Biology',
+          'Microbiology', 'Biochemistry', 'Biotechnology', 'Environmental Science',
+        ],
+        'faculty-of-computing-and-digital-technology': [
+          'Computer Science', 'Software Engineering', 'Information Technology',
+          'Data Science', 'Artificial Intelligence', 'Cybersecurity',
+          'Information Systems', 'Computer Engineering',
+        ],
+        'faculty-of-engineering': [
+          'Civil Engineering', 'Mechanical Engineering', 'Electrical & Electronics Engineering',
+          'Chemical Engineering', 'Computer Engineering', 'Mechatronics Engineering',
+          'Renewable Energy Engineering',
+        ],
+        'faculty-of-business-and-management': [
+          'Accounting', 'Finance', 'Banking', 'Business Administration', 'Marketing',
+          'Human Resource Management', 'Entrepreneurship', 'Project Management',
+          'Supply Chain Management',
+        ],
+        'faculty-of-social-sciences': [
+          'Economics', 'Sociology', 'Political Science', 'Psychology',
+          'International Relations', 'Public Administration',
+          'Criminology & Security Studies', 'Development Studies',
+        ],
+        'faculty-of-arts-and-humanities': [
+          'English & Literary Studies', 'History', 'Philosophy', 'Linguistics',
+          'Theatre & Performing Arts', 'Communication & Media Studies',
+          'Languages & Cultural Studies',
+        ],
+        'faculty-of-law': [
+          'Law', 'Commercial Law', 'International Law',
+          'Human Rights & Constitutional Law', 'Intellectual Property Law',
+        ],
+        'faculty-of-education': [
+          'Educational Management', 'Educational Technology', 'Curriculum Studies',
+          'Guidance & Counselling', 'Science Education', 'Mathematics Education',
+          'Educational Psychology',
+        ],
+        'faculty-of-health-sciences': [
+          'Public Health', 'Health Information Management', 'Medical Laboratory Science',
+          'Nursing Science', 'Nutrition & Dietetics', 'Environmental Health',
+        ],
+        'faculty-of-environmental-design-and-architecture': [
+          'Architecture', 'Urban & Regional Planning', 'Estate Management',
+          'Quantity Surveying', 'Building Technology', 'Geography & Geoinformatics',
+        ],
+        'faculty-of-agriculture-and-food-systems': [
+          'Agricultural Science', 'Agronomy', 'Animal Science', 'Agricultural Economics',
+          'Food Science & Technology', 'Fisheries & Aquaculture', 'Soil Science',
+        ],
+        'faculty-of-media-creative-arts-and-design': [
+          'Graphic Design', 'Digital Media', 'Film & Television Production',
+          'Animation', 'Advertising', 'Public Relations', 'Multimedia Technology',
+        ],
+        'faculty-of-hospitality-and-tourism': [
+          'Hospitality Management', 'Tourism Management', 'Hotel Management',
+          'Event Management', 'Travel & Tourism Studies',
+        ],
+        'faculty-of-library-and-information-science': [
+          'Library Science', 'Information Management', 'Knowledge Management',
+          'Digital Archiving',
+        ],
+        'faculty-of-maritime-and-logistics-studies': [
+          'Maritime Management', 'Logistics & Transport Management',
+          'Port Management', 'Supply Chain & Operations Management',
+        ],
+        'faculty-of-interdisciplinary-and-emerging-studies': [
+          'Climate Change & Sustainability', 'Energy Studies',
+          'Entrepreneurship & Innovation', 'Peace & Conflict Studies',
+          'Artificial Intelligence & Society', 'Digital Transformation',
+        ],
+      };
+
+      async function renderFacultyShowcases() {
+        const wrap = document.getElementById('facultyFeatureList');
+        if (!wrap) return;
+
+        const res = await window.API.public.faculties();
+        const faculties = res.success ? res.data.faculties : [];
+
+        if (!faculties.length) {
+          wrap.innerHTML = `
+            <div class="text-center" style="padding:var(--space-7);">
+              <p class="text-muted">Faculty details will appear here once published.</p>
+            </div>`;
+          return;
+        }
+
+        const blocks = await Promise.all(
+          faculties.map(async (f) => {
+            // Try to fetch the faculty's departments and programmes
+            let departments = [];
+            let programmes = [];
+            try {
+              const detail = await window.API.public.faculty(f.slug);
+              if (detail.success) {
+                departments = detail.data.departments || [];
+                programmes = detail.data.programmes || [];
+              }
+            } catch (_) { /* ignore */ }
+
+            // If no departments in DB, use the static highlight list as fallback
+            const highlightList = departments.length
+              ? departments.map((d) => d.name)
+              : (FACULTY_HIGHLIGHTS[f.slug] || []);
+
+            const dean = f.dean
+              ? `${f.dean.title || ''} ${f.dean.firstName || ''} ${f.dean.lastName || ''}`.trim()
+              : 'To be appointed';
+
+            return `
+              <article class="faculty-feature reveal">
+                <div class="faculty-feature__visual">
+                  <i class="fas ${esc(f.icon || 'fa-university')} faculty-feature__icon"></i>
+                  <div class="faculty-feature__short">${esc(f.shortName || f.name)}</div>
+                  <div class="faculty-feature__est">${f.established ? 'Established ' + esc(f.established) : 'Faculty'}</div>
+                </div>
+                <div class="faculty-feature__body">
+                  <span class="section-label" style="margin-bottom:var(--space-2);">Faculty</span>
+                  <h2>${esc(f.name)}</h2>
+                  <p>${esc(f.description || 'A community of scholars advancing knowledge and shaping the next generation of leaders.')}</p>
+
+                  <div class="faculty-feature__meta">
+                    <div class="faculty-feature__meta-item">
+                      <div class="label">Dean</div>
+                      <div class="value">${esc(dean)}</div>
+                    </div>
+                    <div class="faculty-feature__meta-item">
+                      <div class="label">Departments</div>
+                      <div class="value">${departments.length || highlightList.length || '—'}</div>
+                    </div>
+                    <div class="faculty-feature__meta-item">
+                      <div class="label">Programmes</div>
+                      <div class="value">${programmes.length || '—'}</div>
+                    </div>
+                    <div class="faculty-feature__meta-item">
+                      <div class="label">Accreditation</div>
+                      <div class="value">NUC Accredited</div>
+                    </div>
+                  </div>
+
+                  ${highlightList.length ? `
+                    <div class="faculty-feature__depts">
+                      <h4>${departments.length ? 'Departments' : 'Disciplines &amp; Specialisations'}</h4>
+                      <ul>
+                        ${highlightList.map((name) => `<li>${esc(name)}</li>`).join('')}
+                      </ul>
+                    </div>
+                  ` : ''}
+
+                  <div class="faculty-feature__actions">
+                    <a href="/pages/faculty.html?slug=${encodeURIComponent(f.slug)}" class="btn btn--primary">
+                      View Faculty <i class="fas fa-arrow-right btn__arrow"></i>
+                    </a>
+                    <a href="/pages/programmes.html?faculty=${encodeURIComponent(f._id)}" class="btn btn--ghost">
+                      Programmes
+                    </a>
+                    <a href="/pages/apply.html" class="btn btn--ghost">
+                      Apply
+                    </a>
+                  </div>
+                </div>
+              </article>
+            `;
+          })
+        );
+
+        wrap.innerHTML = blocks.join('');
+
+        // Trigger scroll-reveal for newly injected elements
+        if ('IntersectionObserver' in window) {
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-visible');
+                io.unobserve(e.target);
+              }
+            });
+          }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+          wrap.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+        } else {
+          wrap.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'));
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        renderFacultyShowcases().catch((e) => console.error('[faculty-showcase]', e));
+      });
+    })();
+  </script>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

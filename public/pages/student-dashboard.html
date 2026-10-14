@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Student dashboard at Kelvin Ikpeni University." />
+  <title>Student Dashboard | Kelvin Ikpeni University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body data-page="student-dashboard">
+  <header class="site-header"><div class="container header__inner">
+    <a href="/" class="logo"><span class="logo__crest">K</span><span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span></a>
+    <nav class="main-nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/pages/programmes.html" class="nav-link">Programmes</a>
+      <a href="/pages/library.html" class="nav-link">Library</a>
+    </nav>
+    <div class="header__actions" data-auth-actions></div>
+    <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+  </div></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--color-accent);">Student Portal</span>
+      <h1 style="color:#fff;" id="welcomeName">Welcome</h1>
+      <p>Manage your courses, view results, and track your academic progress.</p>
+    </div>
+  </section>
+
+  <section class="section section--lg">
+    <div class="container">
+      <div id="studentLoading" class="loading-state">
+        <span class="spinner spinner--dark spinner--lg"></span>
+        <span>Loading your dashboard…</span>
+      </div>
+
+      <div id="studentBody" class="hidden">
+        <div class="grid grid--4 mb-6" id="studentStats"></div>
+
+        <div class="grid" style="grid-template-columns:2fr 1fr;gap:var(--space-6);align-items:start;">
+          <div>
+            <div class="card mb-6" style="padding:var(--space-6);">
+              <div class="flex justify-between items-center mb-5 flex-wrap gap-3">
+                <h3 style="margin:0;">My Registered Courses</h3>
+                <button class="btn btn--accent btn--sm" id="openRegisterCourses"><i class="fas fa-plus"></i> Register Courses</button>
+              </div>
+              <div id="registeredCoursesList"></div>
+            </div>
+
+            <div class="card" style="padding:var(--space-6);">
+              <h3 style="margin-bottom:var(--space-4);">Recent Results</h3>
+              <div id="resultsList"></div>
+            </div>
+          </div>
+
+          <aside>
+            <div class="card mb-4" style="padding:var(--space-5);">
+              <h4 style="margin-bottom:var(--space-3);">Academic Info</h4>
+              <ul style="display:flex;flex-direction:column;gap:.5rem;font-size:var(--fs-sm);" id="academicInfo"></ul>
+            </div>
+            <div class="card" style="padding:var(--space-5);">
+              <h4 style="margin-bottom:var(--space-3);">Quick Actions</h4>
+              <ul style="display:flex;flex-direction:column;gap:.5rem;font-size:var(--fs-sm);">
+                <li><a href="/pages/profile.html"><i class="fas fa-user" style="margin-right:.5rem;color:var(--color-secondary);"></i> Edit Profile</a></li>
+                <li><a href="/pages/library.html"><i class="fas fa-book-open" style="margin-right:.5rem;color:var(--color-secondary);"></i> Digital Library</a></li>
+                <li><a href="/pages/academic-calendar.html"><i class="fas fa-calendar-days" style="margin-right:.5rem;color:var(--color-secondary);"></i> Academic Calendar</a></li>
+                <li><a href="/pages/contact.html"><i class="fas fa-envelope" style="margin-right:.5rem;color:var(--color-secondary);"></i> Contact Support</a></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTER COURSES MODAL -->
+  <div id="registerModal" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:var(--z-modal);display:grid;place-items:center;padding:var(--space-5);">
+    <div class="card" style="max-width:720px;width:100%;max-height:85vh;overflow-y:auto;padding:var(--space-6);">
+      <div class="flex justify-between items-center mb-5">
+        <h3 style="margin:0;">Register for Courses</h3>
+        <button class="btn btn--ghost btn--sm" id="closeRegisterModal"><i class="fas fa-xmark"></i></button>
+      </div>
+      <p class="text-muted mb-4" style="font-size:var(--fs-sm);">Select courses to register. Maximum 24 credit units per semester.</p>
+      <div id="availableCoursesList"></div>
+      <div class="mt-5 flex gap-3 flex-wrap">
+        <button class="btn btn--accent" id="submitRegisterCourses">Register Selected</button>
+        <button class="btn btn--ghost" id="cancelRegisterCourses">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer"><div class="container"><div class="footer__bottom" style="border:none;"><div>© <span id="year"></span> Kelvin Ikpeni University.</div></div></div></footer>
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/dashboard.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

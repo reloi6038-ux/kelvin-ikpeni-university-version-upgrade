@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Kelvin Ikpeni University — admissions, general enquiries, and department contacts." />
+  <title>Contact Us | Kelvin Ikpeni University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body data-page="contact">
+  <div class="topbar"><div class="container topbar__inner">
+    <div class="topbar__left">
+      <span><i class="fas fa-location-dot"></i> Kelvin Ikpeni City, Nigeria</span>
+      <a href="mailto:info@kiu.edu.ng"><i class="fas fa-envelope"></i> info@kiu.edu.ng</a>
+      <a href="tel:+2348000000000"><i class="fas fa-phone"></i> +234 (0) 800 000 0000</a>
+    </div>
+  </div></div>
+
+  <header class="site-header"><div class="container header__inner">
+    <a href="/" class="logo"><span class="logo__crest">K</span><span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span></a>
+    <nav class="main-nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/pages/about.html" class="nav-link">About</a>
+      <a href="/pages/faculties.html" class="nav-link">Academics</a>
+      <a href="/pages/admissions.html" class="nav-link">Admissions</a>
+      <a href="/pages/news.html" class="nav-link">News</a>
+      <a href="/pages/contact.html" class="nav-link">Contact</a>
+    </nav>
+    <div class="header__actions" data-auth-actions></div>
+    <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+  </div></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" style="color:rgba(255,255,255,0.7);">
+        <a href="/" style="color:rgba(255,255,255,0.7);">Home</a>
+        <span class="sep">/</span>
+        <span class="current" style="color:var(--color-accent);">Contact</span>
+      </nav>
+      <span class="section-label" style="color:var(--color-accent);">Get In Touch</span>
+      <h1 style="color:#fff;">Contact Us</h1>
+      <p>We're here to help. Reach out to us through any of the channels below or send us a message.</p>
+    </div>
+  </section>
+
+  <section class="section section--lg"><div class="container">
+    <div class="grid grid--3 mb-7">
+      <div class="card" style="padding:var(--space-6);text-align:center;">
+        <div class="faculty-card__icon" style="margin:0 auto var(--space-4);"><i class="fas fa-location-dot"></i></div>
+        <h4>Visit Us</h4>
+        <p class="text-muted mt-2" style="font-size:var(--fs-sm);">Km 25, University Avenue<br />Kelvin Ikpeni City, Nigeria</p>
+      </div>
+      <div class="card" style="padding:var(--space-6);text-align:center;">
+        <div class="faculty-card__icon" style="margin:0 auto var(--space-4);"><i class="fas fa-phone"></i></div>
+        <h4>Call Us</h4>
+        <p class="text-muted mt-2" style="font-size:var(--fs-sm);">
+          Main: +234 (0) 800 000 0000<br />
+          Admissions: +234 (0) 800 000 0001
+        </p>
+      </div>
+      <div class="card" style="padding:var(--space-6);text-align:center;">
+        <div class="faculty-card__icon" style="margin:0 auto var(--space-4);"><i class="fas fa-envelope"></i></div>
+        <h4>Email Us</h4>
+        <p class="text-muted mt-2" style="font-size:var(--fs-sm);">
+          General: info@kiu.edu.ng<br />
+          Admissions: admissions@kiu.edu.ng
+        </p>
+      </div>
+    </div>
+
+    <div class="grid" style="grid-template-columns:2fr 1fr;gap:var(--space-6);align-items:start;">
+      <div class="card" style="padding:var(--space-7);border-top:4px solid var(--color-accent);">
+        <h2 style="margin-bottom:var(--space-5);">Send Us a Message</h2>
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="cName">Your Name <span class="required">*</span></label>
+              <input type="text" id="cName" class="form-control" required maxlength="120" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cEmail">Email <span class="required">*</span></label>
+              <input type="email" id="cEmail" class="form-control" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="cPhone">Phone</label>
+              <input type="tel" id="cPhone" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cDept">Department</label>
+              <select id="cDept" class="form-select">
+                <option value="">General Enquiry</option>
+                <option value="admissions">Admissions</option>
+                <option value="academics">Academics</option>
+                <option value="finance">Finance</option>
+                <option value="student-affairs">Student Affairs</option>
+                <option value="research">Research</option>
+                <option value="ict">ICT Support</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cSubject">Subject <span class="required">*</span></label>
+            <input type="text" id="cSubject" class="form-control" required maxlength="200" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cMessage">Message <span class="required">*</span></label>
+            <textarea id="cMessage" class="form-textarea" required minlength="10" maxlength="5000" placeholder="Type your message here…"></textarea>
+            <div class="form-hint">Minimum 10 characters.</div>
+          </div>
+          <button type="submit" class="btn btn--accent btn--lg" id="contactBtn">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+
+      <aside>
+        <div class="card mb-4" style="padding:var(--space-6);">
+          <h4 style="margin-bottom:var(--space-3);">Office Hours</h4>
+          <ul style="display:flex;flex-direction:column;gap:.5rem;font-size:var(--fs-sm);">
+            <li><strong>Monday – Friday:</strong> 8:00 AM – 5:00 PM</li>
+            <li><strong>Saturday:</strong> 9:00 AM – 1:00 PM</li>
+            <li><strong>Sunday &amp; Holidays:</strong> Closed</li>
+          </ul>
+        </div>
+        <div class="card" style="padding:var(--space-6);">
+          <h4 style="margin-bottom:var(--space-3);">Department Emails</h4>
+          <ul style="display:flex;flex-direction:column;gap:.5rem;font-size:var(--fs-sm);">
+            <li><a href="mailto:admissions@kiu.edu.ng">admissions@kiu.edu.ng</a></li>
+            <li><a href="mailto:registry@kiu.edu.ng">registry@kiu.edu.ng</a></li>
+            <li><a href="mailto:finance@kiu.edu.ng">finance@kiu.edu.ng</a></li>
+            <li><a href="mailto:research@kiu.edu.ng">research@kiu.edu.ng</a></li>
+            <li><a href="mailto:library@kiu.edu.ng">library@kiu.edu.ng</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div></section>
+
+  <footer class="site-footer"><div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="/" class="logo"><span class="logo__crest">K</span><span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span></a>
+        <p>We're here to help.</p>
+      </div>
+      <div class="footer__col"><h4>Quick Links</h4><ul>
+        <li><a href="/pages/admissions.html">Admissions</a></li>
+        <li><a href="/pages/faqs.html">FAQs</a></li>
+        <li><a href="/pages/privacy.html">Privacy</a></li>
+      </ul></div>
+      <div class="footer__col"><h4>Contact</h4>
+        <ul class="footer__contact">
+          <li><i class="fas fa-envelope"></i><span>info@kiu.edu.ng</span></li>
+          <li><i class="fas fa-phone"></i><span>+234 (0) 800 000 0000</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom"><div>© <span id="year"></span> Kelvin Ikpeni University.</div></div>
+  </div></footer>
+
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/content-pages.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

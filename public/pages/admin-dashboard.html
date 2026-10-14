@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Administrator dashboard at Kelvin Ikpeni University." />
+  <title>Admin Dashboard | Kelvin Ikpeni University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body data-page="admin-dashboard">
+  <header class="site-header"><div class="container header__inner">
+    <a href="/" class="logo"><span class="logo__crest">K</span><span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span></a>
+    <nav class="main-nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/pages/faculties.html" class="nav-link">Faculties</a>
+      <a href="/pages/programmes.html" class="nav-link">Programmes</a>
+    </nav>
+    <div class="header__actions" data-auth-actions></div>
+    <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+  </div></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--color-accent);">Administrator Portal</span>
+      <h1 style="color:#fff;" id="welcomeName">Admin Dashboard</h1>
+      <p>University-wide management and analytics.</p>
+    </div>
+  </section>
+
+  <section class="section section--lg">
+    <div class="container">
+      <div id="adminLoading" class="loading-state">
+        <span class="spinner spinner--dark spinner--lg"></span>
+        <span>Loading administrative data…</span>
+      </div>
+      <div id="adminBody" class="hidden">
+        <div class="grid grid--4 mb-6" id="adminStats"></div>
+
+        <div class="grid" style="grid-template-columns:2fr 1fr;gap:var(--space-6);align-items:start;">
+          <div>
+            <div class="card mb-6" style="padding:var(--space-6);">
+              <div class="flex justify-between items-center mb-5 flex-wrap gap-3">
+                <h3 style="margin:0;">Recent Applications</h3>
+                <a href="/pages/admin-applications.html" class="btn btn--ghost btn--sm">View All <i class="fas fa-arrow-right"></i></a>
+              </div>
+              <div id="recentApplications"></div>
+            </div>
+            <div class="card" style="padding:var(--space-6);">
+              <div class="flex justify-between items-center mb-5 flex-wrap gap-3">
+                <h3 style="margin:0;">Recent Users</h3>
+                <a href="/pages/admin-users.html" class="btn btn--ghost btn--sm">View All <i class="fas fa-arrow-right"></i></a>
+              </div>
+              <div id="recentUsers"></div>
+            </div>
+          </div>
+
+          <aside>
+            <div class="card mb-4" style="padding:var(--space-5);">
+              <h4 style="margin-bottom:var(--space-3);">Quick Actions</h4>
+              <ul style="display:flex;flex-direction:column;gap:.5rem;font-size:var(--fs-sm);">
+                <li><a href="/pages/admin-users.html"><i class="fas fa-users" style="margin-right:.5rem;color:var(--color-secondary);"></i> Manage Users</a></li>
+                <li><a href="/pages/admin-applications.html"><i class="fas fa-file-lines" style="margin-right:.5rem;color:var(--color-secondary);"></i> Review Applications</a></li>
+                <li><a href="/pages/admin-content.html"><i class="fas fa-newspaper" style="margin-right:.5rem;color:var(--color-secondary);"></i> Manage Content</a></li>
+                <li><a href="/pages/admin-announcements.html"><i class="fas fa-bullhorn" style="margin-right:.5rem;color:var(--color-secondary);"></i> Announcements</a></li>
+              </ul>
+            </div>
+            <div class="card" style="padding:var(--space-5);">
+              <h4 style="margin-bottom:var(--space-3);">System</h4>
+              <ul style="display:flex;flex-direction:column;gap:.5rem;font-size:var(--fs-sm);">
+                <li><span class="text-muted">Role:</span> <strong>Administrator</strong></li>
+                <li><a href="/api/health" target="_blank">API Health <i class="fas fa-arrow-up-right-from-square" style="font-size:0.7em;"></i></a></li>
+                <li><a href="/pages/contact.html"><i class="fas fa-envelope" style="margin-right:.5rem;color:var(--color-secondary);"></i> Support</a></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer"><div class="container"><div class="footer__bottom" style="border:none;"><div>© <span id="year"></span> Kelvin Ikpeni University.</div></div></div></footer>
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/dashboard.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

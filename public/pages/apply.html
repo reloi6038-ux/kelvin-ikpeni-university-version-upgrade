@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Apply online to Kelvin Ikpeni University. Submit your undergraduate, postgraduate, or online application in minutes. Choose from over 100 programmes across 16 faculties." />
+  <title>Apply Online | Kelvin Ikpeni University</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+
+  <style>
+    /* Application form enhancements */
+    .programme-search-wrap {
+      position: relative;
+    }
+    .programme-search-wrap input {
+      padding-right: 2.75rem;
+    }
+    .programme-search-wrap i {
+      position: absolute;
+      top: 50%; right: 1rem;
+      transform: translateY(-50%);
+      color: var(--color-text-muted);
+      pointer-events: none;
+    }
+
+    .programme-option-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-2);
+      max-height: 420px;
+      overflow-y: auto;
+      padding: var(--space-3);
+      margin-top: var(--space-3);
+      background: var(--color-surface-alt);
+      border-radius: var(--radius);
+      border: 1px solid var(--color-border);
+    }
+
+    .programme-option {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      background: var(--color-surface);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-align: left;
+    }
+    .programme-option:hover {
+      border-color: var(--color-secondary);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+    .programme-option.is-selected {
+      border-color: var(--color-secondary);
+      background: #f4eefa;
+      box-shadow: var(--shadow-focus);
+    }
+    .programme-option__dot {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--color-border-strong);
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+    }
+    .programme-option.is-selected .programme-option__dot {
+      border-color: var(--color-secondary);
+      background: var(--color-secondary);
+      box-shadow: inset 0 0 0 3px #fff;
+    }
+    .programme-option__body { flex: 1; min-width: 0; }
+    .programme-option__title {
+      font-weight: 600;
+      color: var(--color-primary);
+      font-size: var(--fs-sm);
+      margin-bottom: 0.2rem;
+      line-height: 1.3;
+    }
+    .programme-option__meta {
+      font-size: var(--fs-xs);
+      color: var(--color-text-muted);
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .programme-option__meta span { display: inline-flex; align-items: center; gap: 0.25rem; }
+
+    .programme-summary {
+      margin-top: var(--space-3);
+      padding: var(--space-4);
+      background: linear-gradient(135deg, rgba(201,162,39,0.08), rgba(91,42,134,0.06));
+      border-left: 4px solid var(--color-accent);
+      border-radius: var(--radius);
+      font-size: var(--fs-sm);
+    }
+    .programme-summary strong { color: var(--color-primary); }
+
+    .programme-empty {
+      padding: var(--space-6);
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: var(--fs-sm);
+    }
+
+    .level-tabs {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-4);
+    }
+    .level-tab {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1.5px solid var(--color-border);
+      background: var(--color-surface);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .level-tab:hover { border-color: var(--color-secondary); color: var(--color-secondary); }
+    .level-tab.is-active {
+      background: var(--color-primary);
+      color: #fff;
+      border-color: var(--color-primary);
+    }
+
+    .progress-bar {
+      display: flex;
+      gap: 0;
+      margin-bottom: var(--space-7);
+      counter-reset: step;
+    }
+    .progress-bar__step {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) 0;
+      font-size: var(--fs-xs);
+      color: var(--color-text-muted);
+      position: relative;
+    }
+    .progress-bar__step::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: var(--color-border);
+      margin-left: var(--space-3);
+    }
+    .progress-bar__step:last-child::after { display: none; }
+    .progress-bar__num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--color-surface-alt);
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .progress-bar__step.is-active .progress-bar__num {
+      background: var(--color-primary);
+      color: #fff;
+    }
+    .progress-bar__step.is-active { color: var(--color-primary); font-weight: 600; }
+    .progress-bar__step.is-complete .progress-bar__num {
+      background: var(--color-emerald);
+      color: #fff;
+    }
+
+    @media (max-width: 640px) {
+      .progress-bar__step span:not(.progress-bar__num) { display: none; }
+    }
+  </style>
+</head>
+<body data-page="apply">
+
+  <!-- ===================== TOP BAR ===================== -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <div class="topbar__left">
+        <span><i class="fas fa-location-dot"></i> Kelvin Ikpeni City, Nigeria</span>
+        <a href="mailto:admissions@kiu.edu.ng"><i class="fas fa-envelope"></i> admissions@kiu.edu.ng</a>
+      </div>
+      <div class="topbar__right">
+        <a href="/pages/check-status.html"><i class="fas fa-magnifying-glass"></i> Check Status</a>
+        <a href="/pages/portal.html"><i class="fas fa-user-graduate"></i> Portal</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="container header__inner">
+      <a href="/" class="logo" aria-label="Home">
+        <span class="logo__crest">K</span>
+        <span class="logo__text">
+          <span class="logo__name">Kelvin Ikpeni</span>
+          <span class="logo__sub">University</span>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/pages/about.html" class="nav-link">About</a>
+        <a href="/pages/faculties.html" class="nav-link">Academics</a>
+        <a href="/pages/admissions.html" class="nav-link">Admissions</a>
+        <a href="/pages/contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="header__actions" data-auth-actions></div>
+      <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <!-- ===================== PAGE HERO ===================== -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" style="color:rgba(255,255,255,0.7);">
+        <a href="/" style="color:rgba(255,255,255,0.7);">Home</a>
+        <span class="sep">/</span>
+        <a href="/pages/admissions.html" style="color:rgba(255,255,255,0.7);">Admissions</a>
+        <span class="sep">/</span>
+        <span class="current" style="color:var(--color-accent);">Apply Online</span>
+      </nav>
+      <span class="section-label" style="color:var(--color-accent);">Application Form</span>
+      <h1 style="color:#fff;">Apply to Kelvin Ikpeni University</h1>
+      <p>Complete the form below to submit your application. You'll receive a reference number instantly.</p>
+    </div>
+  </section>
+
+  <section class="section section--lg">
+    <div class="container container--narrow">
+
+      <!-- PROGRESS BAR -->
+      <div class="progress-bar" id="progressBar">
+        <div class="progress-bar__step is-active">
+          <span class="progress-bar__num">1</span>
+          <span>Programme</span>
+        </div>
+        <div class="progress-bar__step">
+          <span class="progress-bar__num">2</span>
+          <span>Personal</span>
+        </div>
+        <div class="progress-bar__step">
+          <span class="progress-bar__num">3</span>
+          <span>Contact</span>
+        </div>
+        <div class="progress-bar__step">
+          <span class="progress-bar__num">4</span>
+          <span>Academic</span>
+        </div>
+        <div class="progress-bar__step">
+          <span class="progress-bar__num">5</span>
+          <span>Submit</span>
+        </div>
+      </div>
+
+      <!-- SUCCESS PANEL -->
+      <div id="successPanel" class="hidden card" style="padding:var(--space-7);text-align:center;border-top:4px solid var(--color-success);">
+        <div style="font-size:3rem;color:var(--color-success);"><i class="fas fa-circle-check"></i></div>
+        <h2 class="mt-4">Application Submitted Successfully</h2>
+        <p class="text-muted mt-3">Save your reference number. You'll use it to track your application status.</p>
+        <div class="mt-5" style="font-family:var(--font-mono);font-size:1.75rem;font-weight:700;color:var(--color-primary);letter-spacing:0.05em;padding:var(--space-4);background:var(--color-surface-alt);border-radius:var(--radius);" id="refNumber">—</div>
+        <div class="mt-5 flex justify-center gap-3 flex-wrap">
+          <a href="/pages/check-status.html" class="btn btn--primary"><i class="fas fa-magnifying-glass"></i> Check Status</a>
+          <button type="button" class="btn btn--ghost" id="copyRefBtn"><i class="fas fa-copy"></i> Copy Reference</button>
+          <a href="/" class="btn btn--ghost">Back to Home</a>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <form id="applyForm" class="card" style="padding:var(--space-7);border-top:4px solid var(--color-accent);">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="faculty-card__icon" style="margin:0;width:56px;height:56px;font-size:1.25rem;"><i class="fas fa-file-pen"></i></div>
+          <div>
+            <h2 style="margin:0;">Application Form</h2>
+            <p class="text-muted" style="margin:0;font-size:var(--fs-sm);">Fields marked with <span style="color:var(--color-danger);">*</span> are required.</p>
+          </div>
+        </div>
+
+        <!-- ============================================
+             SECTION 1: PROGRAMME OF INTEREST
+             ============================================ -->
+        <h3 style="margin-bottom:var(--space-3);">1. Programme of Interest</h3>
+
+        <!-- Level filter tabs -->
+        <div class="level-tabs" id="levelTabs">
+          <button type="button" class="level-tab is-active" data-level="">All Levels</button>
+          <button type="button" class="level-tab" data-level="undergraduate">Undergraduate</button>
+          <button type="button" class="level-tab" data-level="postgraduate">Postgraduate</button>
+          <button type="button" class="level-tab" data-level="online">Online</button>
+        </div>
+
+        <!-- Search -->
+        <div class="form-group">
+          <label class="form-label" for="progSearch">Search Programme <span class="required">*</span></label>
+          <div class="programme-search-wrap">
+            <input type="text" id="progSearch" class="form-control" placeholder="Type to search by name, degree, or code…" autocomplete="off" />
+            <i class="fas fa-magnifying-glass"></i>
+          </div>
+          <div class="form-hint">Showing <span id="progCount">0</span> programme(s). Click a programme to select it.</div>
+        </div>
+
+        <!-- Programme options -->
+        <div id="programmeList" class="programme-option-grid">
+          <div class="programme-empty" style="grid-column:1/-1;">
+            <span class="spinner spinner--dark"></span>
+            <div class="mt-3">Loading programmes…</div>
+          </div>
+        </div>
+
+        <!-- Selected programme summary -->
+        <div id="programmeSummary" class="programme-summary hidden">
+          <div><i class="fas fa-circle-check" style="color:var(--color-emerald);"></i> <strong>Selected programme:</strong></div>
+          <div class="mt-2" id="programmeSummaryBody"></div>
+        </div>
+
+        <input type="hidden" id="programme" name="programme" required />
+        <input type="hidden" id="level" name="level" required />
+
+        <!-- ============================================
+             SECTION 2: PERSONAL INFORMATION
+             ============================================ -->
+        <h3 class="mt-7" style="margin-bottom:var(--space-4);">2. Personal Information</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="firstName">First Name <span class="required">*</span></label>
+            <input type="text" id="firstName" name="firstName" class="form-control" required maxlength="60" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lastName">Last Name <span class="required">*</span></label>
+            <input type="text" id="lastName" name="lastName" class="form-control" required maxlength="60" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="middleName">Middle Name</label>
+            <input type="text" id="middleName" name="middleName" class="form-control" maxlength="60" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="gender">Gender <span class="required">*</span></label>
+            <select id="gender" name="gender" class="form-select" required>
+              <option value="">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="dateOfBirth">Date of Birth <span class="required">*</span></label>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="nationality">Nationality <span class="required">*</span></label>
+            <input type="text" id="nationality" name="nationality" class="form-control" value="Nigerian" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="stateOfOrigin">State of Origin</label>
+          <input type="text" id="stateOfOrigin" name="stateOfOrigin" class="form-control" maxlength="60" />
+        </div>
+
+        <!-- ============================================
+             SECTION 3: CONTACT INFORMATION
+             ============================================ -->
+        <h3 class="mt-7" style="margin-bottom:var(--space-4);">3. Contact Information</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address <span class="required">*</span></label>
+            <input type="email" id="email" name="email" class="form-control" required />
+            <div class="form-hint">Your reference number and updates will be sent here.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="phone" name="phone" class="form-control" required placeholder="+234 800 000 0000" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="address">Contact Address</label>
+          <input type="text" id="address" name="address" class="form-control" maxlength="200" />
+        </div>
+
+        <!-- ============================================
+             SECTION 4: ACADEMIC BACKGROUND
+             ============================================ -->
+        <h3 class="mt-7" style="margin-bottom:var(--space-4);">4. Academic Background</h3>
+
+        <div class="form-group">
+          <label class="form-label" for="previousSchool">Previous School / Institution</label>
+          <input type="text" id="previousSchool" name="previousSchool" class="form-control" maxlength="200" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="previousQualification">Previous Qualification</label>
+            <input type="text" id="previousQualification" name="previousQualification" class="form-control" placeholder="e.g., WAEC, B.Sc., etc." maxlength="120" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="jambRegNumber">JAMB Registration Number</label>
+            <input type="text" id="jambRegNumber" name="jambRegNumber" class="form-control" maxlength="30" />
+          </div>
+        </div>
+
+        <div class="form-group" id="jambScoreWrap">
+          <label class="form-label" for="jambScore">JAMB Score</label>
+          <input type="number" id="jambScore" name="jambScore" class="form-control" min="0" max="400" />
+        </div>
+
+        <!-- ============================================
+             SUBMIT
+             ============================================ -->
+        <div class="mt-7" style="padding-top:var(--space-5);border-top:1px solid var(--color-border);">
+          <div class="form-check mb-5">
+            <input type="checkbox" id="declaration" required />
+            <label for="declaration" class="text-muted" style="font-size:var(--fs-sm);">
+              I declare that the information provided is accurate and complete to the best of my knowledge.
+            </label>
+          </div>
+          <div class="flex gap-3 flex-wrap">
+            <button type="submit" class="btn btn--accent btn--lg" id="submitBtn">
+              <i class="fas fa-paper-plane"></i> Submit Application
+            </button>
+            <button type="reset" class="btn btn--ghost btn--lg" id="resetBtn">Reset Form</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="/" class="logo">
+            <span class="logo__crest">K</span>
+            <span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span>
+          </a>
+          <p>Your journey begins here.</p>
+        </div>
+        <div class="footer__col"><h4>Admissions</h4><ul>
+          <li><a href="/pages/admissions.html">Admissions</a></li>
+          <li><a href="/pages/entry-requirements.html">Entry Requirements</a></li>
+          <li><a href="/pages/tuition-fees.html">Tuition &amp; Fees</a></li>
+          <li><a href="/pages/check-status.html">Check Status</a></li>
+        </ul></div>
+        <div class="footer__col"><h4>Contact</h4>
+          <ul class="footer__contact"><li><i class="fas fa-envelope"></i><span>admissions@kiu.edu.ng</span></li></ul>
+        </div>
+      </div>
+      <div class="footer__bottom"><div>© <span id="year"></span> Kelvin Ikpeni University.</div></div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/admissions.js"></script>
+  <script>
+    // Set footer year without relying on an inline script being allowed
+    (function () {
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>

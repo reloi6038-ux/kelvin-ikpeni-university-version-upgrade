@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Accreditation and recognition at Kelvin Ikpeni University." />
+  <title>Accreditation | Kelvin Ikpeni University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body data-page="accreditation">
+  <header class="site-header"><div class="container header__inner">
+    <a href="/" class="logo"><span class="logo__crest">K</span><span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span></a>
+    <nav class="main-nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/pages/about.html" class="nav-link">About</a>
+      <a href="/pages/admissions.html" class="nav-link">Admissions</a>
+      <a href="/pages/contact.html" class="nav-link">Contact</a>
+    </nav>
+    <div class="header__actions" data-auth-actions></div>
+    <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+  </div></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--color-accent);">Recognition</span>
+      <h1 style="color:#fff;">Accreditation &amp; Recognition</h1>
+      <p>Commitment to quality and regulatory compliance.</p>
+    </div>
+  </section>
+
+  <section class="section section--lg"><div class="container container--narrow">
+    <h2>Our Commitment to Quality</h2>
+    <p>Kelvin Ikpeni University is committed to maintaining the highest standards of academic quality and regulatory compliance. Our programmes are developed in line with national and international benchmarks for higher education.</p>
+
+    <div class="card mt-6" style="padding:var(--space-6);border-left:4px solid var(--color-accent);">
+      <h3><i class="fas fa-circle-info" style="color:var(--color-accent-dark);margin-right:.5rem;"></i> Verification Notice</h3>
+      <p class="text-muted">Formal accreditation details, regulatory approvals, and recognition status will be published here as they are confirmed by the relevant bodies. Prospective students and partners can contact the Registrar's Office for the latest information.</p>
+      <p class="text-muted" style="font-size:var(--fs-sm);"><em>Do not rely on this page for formal confirmation of accreditation. Always request official documentation from the university.</em></p>
+    </div>
+
+    <h2 class="mt-7">What We Aim For</h2>
+    <ul style="display:flex;flex-direction:column;gap:.75rem;">
+      <li><i class="fas fa-check" style="color:var(--color-emerald);margin-right:.6rem;"></i> Full regulatory compliance for every programme we offer</li>
+      <li><i class="fas fa-check" style="color:var(--color-emerald);margin-right:.6rem;"></i> Continuous curriculum review against international standards</li>
+      <li><i class="fas fa-check" style="color:var(--color-emerald);margin-right:.6rem;"></i> Transparent publication of accreditation status</li>
+      <li><i class="fas fa-check" style="color:var(--color-emerald);margin-right:.6rem;"></i> External examiner system for all degree programmes</li>
+    </ul>
+  </div></section>
+
+  <footer class="site-footer"><div class="container"><div class="footer__bottom" style="border:none;"><div>© <span id="year"></span> Kelvin Ikpeni University.</div></div></div></footer>
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

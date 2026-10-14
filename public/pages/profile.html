@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="My profile at Kelvin Ikpeni University." />
+  <title>My Profile | Kelvin Ikpeni University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body data-page="profile">
+  <header class="site-header"><div class="container header__inner">
+    <a href="/" class="logo"><span class="logo__crest">K</span><span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span></a>
+    <nav class="main-nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/pages/portal.html" class="nav-link">Portal</a>
+      <a href="/pages/contact.html" class="nav-link">Contact</a>
+    </nav>
+    <div class="header__actions" data-auth-actions></div>
+    <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+  </div></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--color-accent);">My Account</span>
+      <h1 style="color:#fff;">My Profile</h1>
+      <p>Update your personal information and password.</p>
+    </div>
+  </section>
+
+  <section class="section section--lg">
+    <div class="container container--narrow">
+      <div id="profileLoading" class="loading-state">
+        <span class="spinner spinner--dark spinner--lg"></span>
+        <span>Loading your profile…</span>
+      </div>
+
+      <div id="profileBody" class="hidden">
+        <div class="card mb-6" style="padding:var(--space-6);">
+          <div class="flex items-center gap-4 flex-wrap">
+            <div class="testimonial__avatar" style="width:72px;height:72px;font-size:1.75rem;" id="profileInitial">U</div>
+            <div style="flex:1;">
+              <h2 style="margin:0;" id="profileName">—</h2>
+              <p class="text-muted" style="margin:0;" id="profileEmail">—</p>
+              <span class="badge badge--purple mt-2" id="profileRole">—</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-6" style="padding:var(--space-6);">
+          <h3 style="margin-bottom:var(--space-4);">Personal Information</h3>
+          <form id="profileForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="pFirstName">First Name</label>
+                <input type="text" id="pFirstName" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="pLastName">Last Name</label>
+                <input type="text" id="pLastName" class="form-control" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="pPhone">Phone</label>
+                <input type="tel" id="pPhone" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="pGender">Gender</label>
+                <select id="pGender" class="form-select">
+                  <option value="">Prefer not to say</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="pDob">Date of Birth</label>
+                <input type="date" id="pDob" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="pNationality">Nationality</label>
+                <input type="text" id="pNationality" class="form-control" />
+              </div>
+            </div>
+            <button type="submit" class="btn btn--primary btn--lg mt-3" id="saveProfileBtn">Save Changes</button>
+          </form>
+        </div>
+
+        <div class="card" style="padding:var(--space-6);">
+          <h3 style="margin-bottom:var(--space-4);">Change Password</h3>
+          <form id="passwordForm">
+            <div class="form-group">
+              <label class="form-label" for="curPass">Current Password</label>
+              <input type="password" id="curPass" class="form-control" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="newPass">New Password</label>
+                <input type="password" id="newPass" class="form-control" required minlength="8" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="confirmNewPass">Confirm New Password</label>
+                <input type="password" id="confirmNewPass" class="form-control" required minlength="8" />
+              </div>
+            </div>
+            <button type="submit" class="btn btn--outline btn--lg mt-3" id="changePassBtn">Change Password</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer"><div class="container"><div class="footer__bottom" style="border:none;"><div>© <span id="year"></span> Kelvin Ikpeni University.</div></div></div></footer>
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/auth-pages.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Manage Users | Admin | Kelvin Ikpeni University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body data-page="admin-users">
+  <header class="site-header"><div class="container header__inner">
+    <a href="/" class="logo"><span class="logo__crest">K</span><span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span></a>
+    <nav class="main-nav">
+      <a href="/pages/admin-dashboard.html" class="nav-link">Dashboard</a>
+      <a href="/pages/admin-users.html" class="nav-link">Users</a>
+      <a href="/pages/admin-applications.html" class="nav-link">Applications</a>
+      <a href="/pages/admin-content.html" class="nav-link">Content</a>
+      <a href="/pages/admin-announcements.html" class="nav-link">Announcements</a>
+    </nav>
+    <div class="header__actions" data-auth-actions></div>
+    <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+  </div></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--color-accent);">Admin</span>
+      <h1 style="color:#fff;">Manage Users</h1>
+      <p>View, filter, edit, and manage all user accounts.</p>
+    </div>
+  </section>
+
+  <section class="section section--lg">
+    <div class="container">
+      <div class="filter-bar" style="grid-template-columns:2fr 1fr 1fr;">
+        <input type="text" id="userSearch" class="form-control" placeholder="Search by name, email, matric or staff ID…" />
+        <select id="userRole" class="form-select">
+          <option value="">All Roles</option>
+          <option value="admin">Admin</option>
+          <option value="lecturer">Lecturer</option>
+          <option value="student">Student</option>
+          <option value="applicant">Applicant</option>
+        </select>
+        <select id="userStatus" class="form-select">
+          <option value="">All Statuses</option>
+          <option value="active">Active</option>
+          <option value="suspended">Suspended</option>
+          <option value="pending">Pending</option>
+          <option value="graduated">Graduated</option>
+          <option value="withdrawn">Withdrawn</option>
+        </select>
+      </div>
+
+      <div class="flex justify-between items-center mb-5 flex-wrap gap-3">
+        <div class="text-muted" style="font-size:var(--fs-sm);" id="usersCount">Loading…</div>
+      </div>
+
+      <div class="card" style="padding:0;overflow:hidden;">
+        <div id="usersTableWrap" style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:var(--fs-sm);" id="usersTable">
+            <thead style="background:var(--color-surface-alt);">
+              <tr style="text-align:left;">
+                <th style="padding:.85rem 1rem;">Name</th>
+                <th style="padding:.85rem 1rem;">Email</th>
+                <th style="padding:.85rem 1rem;">Role</th>
+                <th style="padding:.85rem 1rem;">Status</th>
+                <th style="padding:.85rem 1rem;">Joined</th>
+                <th style="padding:.85rem 1rem;text-align:right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="usersTbody">
+              <tr><td colspan="6" style="padding:var(--space-7);text-align:center;"><span class="spinner spinner--dark"></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="flex justify-center gap-3 mt-6" id="usersPagination"></div>
+    </div>
+  </section>
+
+  <!-- EDIT USER MODAL -->
+  <div id="editUserModal" class="hidden" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:var(--z-modal);display:grid;place-items:center;padding:var(--space-5);">
+    <div class="card" style="max-width:520px;width:100%;padding:var(--space-6);">
+      <div class="flex justify-between items-center mb-5">
+        <h3 style="margin:0;">Edit User</h3>
+        <button class="btn btn--ghost btn--sm" id="closeEditUser"><i class="fas fa-xmark"></i></button>
+      </div>
+      <form id="editUserForm">
+        <input type="hidden" id="editUserId" />
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" id="editUserName" class="form-control" disabled />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" id="editUserEmail" class="form-control" disabled />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Role</label>
+            <select id="editUserRole" class="form-select">
+              <option value="applicant">Applicant</option>
+              <option value="student">Student</option>
+              <option value="lecturer">Lecturer</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select id="editUserStatus" class="form-select">
+              <option value="active">Active</option>
+              <option value="pending">Pending</option>
+              <option value="suspended">Suspended</option>
+              <option value="graduated">Graduated</option>
+              <option value="withdrawn">Withdrawn</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex gap-3 flex-wrap mt-3">
+          <button type="submit" class="btn btn--accent">Save Changes</button>
+          <button type="button" class="btn btn--ghost" id="cancelEditUser">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer"><div class="container"><div class="footer__bottom" style="border:none;"><div>© <span id="year"></span> Kelvin Ikpeni University.</div></div></div></footer>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/admin.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

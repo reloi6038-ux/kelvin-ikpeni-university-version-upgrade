@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Check the status of your application to Kelvin Ikpeni University using your reference number." />
+  <title>Check Application Status | Kelvin Ikpeni University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body data-page="check-status">
+  <div class="topbar"><div class="container topbar__inner">
+    <div class="topbar__left"><span><i class="fas fa-location-dot"></i> Kelvin Ikpeni City, Nigeria</span></div>
+    <div class="topbar__right"><a href="/pages/portal.html"><i class="fas fa-user-graduate"></i> Portal</a></div>
+  </div></div>
+
+  <header class="site-header"><div class="container header__inner">
+    <a href="/" class="logo" aria-label="Home"><span class="logo__crest">K</span><span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/pages/about.html" class="nav-link">About</a>
+      <a href="/pages/admissions.html" class="nav-link">Admissions</a>
+      <a href="/pages/contact.html" class="nav-link">Contact</a>
+    </nav>
+    <div class="header__actions" data-auth-actions></div>
+    <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+  </div></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumbs" style="color:rgba(255,255,255,0.7);">
+        <a href="/" style="color:rgba(255,255,255,0.7);">Home</a>
+        <span class="sep">/</span>
+        <a href="/pages/admissions.html" style="color:rgba(255,255,255,0.7);">Admissions</a>
+        <span class="sep">/</span>
+        <span class="current" style="color:var(--color-accent);">Check Status</span>
+      </nav>
+      <span class="section-label" style="color:var(--color-accent);">Application Tracking</span>
+      <h1 style="color:#fff;">Check Your Application Status</h1>
+      <p>Enter your reference number to view the current status of your application.</p>
+    </div>
+  </section>
+
+  <section class="section section--lg">
+    <div class="container container--narrow">
+      <div class="card" style="padding:var(--space-7);">
+        <form id="statusForm">
+          <div class="form-group">
+            <label class="form-label" for="reference">Application Reference Number</label>
+            <input type="text" id="reference" class="form-control" required placeholder="KIU-2026-XXXXXX" style="font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.05em;" />
+            <div class="form-hint">Example format: KIU-2026-AB12CD</div>
+          </div>
+          <button type="submit" class="btn btn--accent btn--lg btn--block" id="statusBtn">
+            <i class="fas fa-magnifying-glass"></i> Check Status
+          </button>
+        </form>
+      </div>
+
+      <div id="statusResult" class="mt-6"></div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="/" class="logo"><span class="logo__crest">K</span><span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span></a>
+          <p>Track your application anytime.</p>
+        </div>
+        <div class="footer__col"><h4>Admissions</h4><ul>
+          <li><a href="/pages/apply.html">Apply</a></li>
+          <li><a href="/pages/check-status.html">Check Status</a></li>
+        </ul></div>
+        <div class="footer__col"><h4>Contact</h4>
+          <ul class="footer__contact"><li><i class="fas fa-envelope"></i><span>admissions@kiu.edu.ng</span></li></ul>
+        </div>
+      </div>
+      <div class="footer__bottom"><div>© <span id="year"></span> Kelvin Ikpeni University.</div></div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/admissions.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

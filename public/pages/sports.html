@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sports and recreation at Kelvin Ikpeni University." />
+  <title>Sports &amp; Recreation | Kelvin Ikpeni University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/global.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body data-page="sports">
+  <header class="site-header"><div class="container header__inner">
+    <a href="/" class="logo"><span class="logo__crest">K</span><span class="logo__text"><span class="logo__name">Kelvin Ikpeni</span><span class="logo__sub">University</span></span></a>
+    <nav class="main-nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/pages/campus-life.html" class="nav-link">Campus Life</a>
+      <a href="/pages/sports.html" class="nav-link">Sports</a>
+      <a href="/pages/contact.html" class="nav-link">Contact</a>
+    </nav>
+    <div class="header__actions" data-auth-actions></div>
+    <button class="nav-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+  </div></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-label" style="color:var(--color-accent);">Recreation</span>
+      <h1 style="color:#fff;">Sports &amp; Recreation</h1>
+      <p>Staying active, on campus.</p>
+    </div>
+  </section>
+
+  <section class="section section--lg"><div class="container container--narrow">
+    <p>Physical wellbeing is part of student success. We offer facilities and programmes for all levels of fitness and interest — from competitive sports to casual recreation.</p>
+
+    <div class="grid grid--3 mt-7">
+      <div class="card" style="padding:var(--space-5);"><i class="fas fa-futbol" style="font-size:1.5rem;color:var(--color-accent-dark);"></i><h4 class="mt-3">Football</h4><p class="text-muted" style="font-size:var(--fs-sm);">Pitch, training, and inter-hall competitions.</p></div>
+      <div class="card" style="padding:var(--space-5);"><i class="fas fa-basketball" style="font-size:1.5rem;color:var(--color-accent-dark);"></i><h4 class="mt-3">Basketball</h4><p class="text-muted" style="font-size:var(--fs-sm);">Indoor &amp; outdoor courts.</p></div>
+      <div class="card" style="padding:var(--space-5);"><i class="fas fa-table-tennis-paddle-ball" style="font-size:1.5rem;color:var(--color-accent-dark);"></i><h4 class="mt-3">Table Tennis</h4><p class="text-muted" style="font-size:var(--fs-sm);">Available in the recreation centre.</p></div>
+      <div class="card" style="padding:var(--space-5);"><i class="fas fa-dumbbell" style="font-size:1.5rem;color:var(--color-accent-dark);"></i><h4 class="mt-3">Gym</h4><p class="text-muted" style="font-size:var(--fs-sm);">Modern fitness equipment and classes.</p></div>
+      <div class="card" style="padding:var(--space-5);"><i class="fas fa-swimmer" style="font-size:1.5rem;color:var(--color-accent-dark);"></i><h4 class="mt-3">Swimming</h4><p class="text-muted" style="font-size:var(--fs-sm);">Scheduled pool access and lessons.</p></div>
+      <div class="card" style="padding:var(--space-5);"><i class="fas fa-person-running" style="font-size:1.5rem;color:var(--color-accent-dark);"></i><h4 class="mt-3">Athletics</h4><p class="text-muted" style="font-size:var(--fs-sm);">Track events and campus runs.</p></div>
+    </div>
+  </div></section>
+
+  <footer class="site-footer"><div class="container"><div class="footer__bottom" style="border:none;"><div>© <span id="year"></span> Kelvin Ikpeni University.</div></div></div></footer>
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
