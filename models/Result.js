@@ -1,6 +1,9 @@
 /**
  * models/Result.js
  * A student's result in a course for a semester/session.
+ *
+ * This pre-save hook is SYNCHRONOUS, so it correctly uses `next`.
+ * No change is needed for Mongoose 7+.
  */
 const mongoose = require('mongoose');
 const { GRADE_SCALE } = require('../utils/constants');
@@ -25,6 +28,7 @@ const resultSchema = new mongoose.Schema(
 
 resultSchema.index({ student: 1, session: 1, semester: 1 });
 
+/* Synchronous hook — `next` is correct here */
 resultSchema.pre('save', function (next) {
   this.totalScore = (this.caScore || 0) + (this.examScore || 0);
   const s = this.totalScore;
