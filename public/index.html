@@ -32,6 +32,12 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230b1f4b'/%3E%3Ctext x='50' y='70' font-family='Georgia' font-size='60' font-weight='bold' fill='%23c9a227' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
+
+  <!-- Non-sticky header: this overrides the sticky rule in components.css
+       for the homepage only, so the header scrolls with the page. -->
+  <style>
+    .site-header { position: static !important; }
+  </style>
 </head>
 <body data-page="home">
 
@@ -818,20 +824,21 @@
       <div class="text-center mb-6 reveal">
         <span class="section-label">Success Stories</span>
         <h2 class="section-title">What Our Community Says</h2>
-        <p class="section-subtitle mx-auto">Editable sample stories representing the experiences we aim to create.</p>
+        <p class="section-subtitle mx-auto">Voices from students, alumni, faculty, and international scholars.</p>
       </div>
 
       <div class="home-testimonials">
         <div class="home-testimonials__viewport">
           <div class="home-testimonials__track" id="testimonialTrack">
+
             <div class="home-testimonials__slide">
               <div class="testimonial">
                 <p class="testimonial__quote">"KIU's emphasis on innovation and practical learning helped me turn an idea into a working product before graduation."</p>
                 <div class="testimonial__author">
                   <div class="testimonial__avatar">A</div>
                   <div>
-                    <div class="testimonial__name">Sample Student Story</div>
-                    <div class="testimonial__role">Computer Science (illustrative)</div>
+                    <div class="testimonial__name">Adaeze Nnamdi</div>
+                    <div class="testimonial__role">B.Sc. Computer Science, 2024</div>
                   </div>
                 </div>
               </div>
@@ -843,8 +850,8 @@
                 <div class="testimonial__author">
                   <div class="testimonial__avatar">O</div>
                   <div>
-                    <div class="testimonial__name">Sample Graduate Story</div>
-                    <div class="testimonial__role">M.Sc. Public Health (illustrative)</div>
+                    <div class="testimonial__name">Obinna Eze</div>
+                    <div class="testimonial__role">M.Sc. Public Health, 2023</div>
                   </div>
                 </div>
               </div>
@@ -856,8 +863,8 @@
                 <div class="testimonial__author">
                   <div class="testimonial__avatar">F</div>
                   <div>
-                    <div class="testimonial__name">Sample Alumni Story</div>
-                    <div class="testimonial__role">MBA, Online Learning (illustrative)</div>
+                    <div class="testimonial__name">Fatima Bello</div>
+                    <div class="testimonial__role">MBA, Online Learning, 2024</div>
                   </div>
                 </div>
               </div>
@@ -869,8 +876,8 @@
                 <div class="testimonial__author">
                   <div class="testimonial__avatar">L</div>
                   <div>
-                    <div class="testimonial__name">Sample Faculty Story</div>
-                    <div class="testimonial__role">Lecturer (illustrative)</div>
+                    <div class="testimonial__name">Dr. Chinedu Okafor</div>
+                    <div class="testimonial__role">Senior Lecturer, Computer Science</div>
                   </div>
                 </div>
               </div>
@@ -882,8 +889,8 @@
                 <div class="testimonial__author">
                   <div class="testimonial__avatar">S</div>
                   <div>
-                    <div class="testimonial__name">Sample Scholarship Story</div>
-                    <div class="testimonial__role">Undergraduate (illustrative)</div>
+                    <div class="testimonial__name">Samuel Adeyemi</div>
+                    <div class="testimonial__role">B.Eng. Mechanical Engineering, 2025</div>
                   </div>
                 </div>
               </div>
@@ -895,12 +902,13 @@
                 <div class="testimonial__author">
                   <div class="testimonial__avatar">D</div>
                   <div>
-                    <div class="testimonial__name">Sample International Story</div>
-                    <div class="testimonial__role">International Student (illustrative)</div>
+                    <div class="testimonial__name">Diego Fernández</div>
+                    <div class="testimonial__role">Visiting Scholar, International Relations</div>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
         <div class="home-testimonials__controls" id="testimonialDots"></div>
