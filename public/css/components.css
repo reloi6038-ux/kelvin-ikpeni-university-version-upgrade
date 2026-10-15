@@ -598,13 +598,21 @@
   transform: rotate(180deg);
 }
 
+/* =========================================================
+   NAV DROPDOWN + MEGA MENU
+   Centered under the parent nav item, clamped to the viewport
+   so they never overflow off-screen.
+   ========================================================= */
 .nav-item { position: relative; }
+
+/* Regular dropdown */
 .nav-dropdown {
   position: absolute;
   top: calc(100% + 12px);
   left: 50%;
   transform: translateX(-50%) translateY(-8px);
-  min-width: 260px;
+  min-width: 280px;
+  max-width: min(360px, calc(100vw - 2rem));
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -642,6 +650,7 @@
   font-size: 0.95em;
 }
 
+/* Mega-menu — centered on parent, clamped to screen width */
 .mega-menu {
   position: absolute;
   top: calc(100% + 12px);
@@ -687,6 +696,20 @@
   color: var(--color-text);
 }
 .mega-menu__col a:hover { color: var(--color-secondary); padding-left: 4px; }
+
+/* Edge-safe: last nav item flips its panel to stay on screen */
+.nav-item.has-dropdown:last-child .nav-dropdown,
+.nav-item.has-mega:last-child .mega-menu {
+  left: auto;
+  right: 0;
+  transform: translateY(-8px);
+}
+.nav-item.has-dropdown:last-child:hover .nav-dropdown,
+.nav-item.has-dropdown:last-child:focus-within .nav-dropdown,
+.nav-item.has-mega:last-child:hover .mega-menu,
+.nav-item.has-mega:last-child:focus-within .mega-menu {
+  transform: translateY(0);
+}
 
 .header__actions { display: flex; align-items: center; gap: var(--space-3); }
 
@@ -1337,7 +1360,10 @@
   .mega-menu {
     position: static;
     transform: none;
+    left: auto;
+    right: auto;
     width: 100%;
+    max-width: 100%;
     opacity: 1;
     box-shadow: none;
     border: none;
