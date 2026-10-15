@@ -1,6 +1,6 @@
 /**
  * public/js/main.js
- * Global UI behavior + homepage data loading + cookie consent loader.
+ * Global UI behavior + homepage data loading.
  */
 (function () {
   'use strict';
@@ -51,41 +51,109 @@
   }
 
   /* =========================================================
-     MOBILE NAVIGATION
+     MOBILE NAVIGATION (with full aria-expanded support)
      ========================================================= */
   function initMobileNav() {
     const toggle = document.querySelector('.nav-toggle');
     const nav = document.querySelector('.main-nav');
     if (!toggle || !nav) return;
 
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('is-open');
-      const expanded = nav.classList.contains('is-open');
-      toggle.setAttribute('aria-expanded', String(expanded));
-      toggle.innerHTML = expanded
-        ? '<i class="fas fa-xmark"></i>'
-        : '<i class="fas fa-bars"></i>';
+    // Set up aria-haspopup + aria-expanded on dropdown parents from the start
+    const dropdownParents = nav.querySelectorAll(
+      '.nav-item.has-dropdown > .nav-link, .nav-item.has-mega > .nav-link'
+    );
+    dropdownParents.forEach((link) => {
+      link.setAttribute('aria-haspopup', 'true');
+      link.setAttribute('aria-expanded', 'false');
     });
 
-    document.querySelectorAll('.nav-item.has-dropdown > .nav-link, .nav-item.has-mega > .nav-link').forEach((link) => {
+    const openNav = () => {
+      nav.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close navigation');
+      toggle.innerHTML = '<i class="fas fa-xmark"></i>';
+      document.body.classList.add('mobile-nav-open');
+    };
+
+    const closeNav = () => {
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation');
+      toggle.innerHTML = '<i class="fas fa-bars"></i>';
+      document.body.classList.remove('mobile-nav-open');
+      // Reset all dropdown parents to closed
+      nav.querySelectorAll('.nav-item.is-open').forEach((el) => {
+        el.classList.remove('is-open');
+        const parentLink = el.querySelector('.nav-link');
+        if (parentLink) parentLink.setAttribute('aria-expanded', 'false');
+      });
+    };
+
+    toggle.addEventListener('click', () => {
+      if (nav.classList.contains('is-open')) closeNav();
+      else openNav();
+    });
+
+    // Toggle dropdown groups on mobile; also handle desktop (no-op)
+    dropdownParents.forEach((link) => {
       link.addEventListener('click', (e) => {
         if (window.innerWidth <= 900) {
           e.preventDefault();
-          link.parentElement.classList.toggle('is-open');
+          const item = link.parentElement;
+          const wasOpen = item.classList.contains('is-open');
+
+          // Close other open dropdowns
+          nav.querySelectorAll('.nav-item.is-open').forEach((el) => {
+            if (el !== item) {
+              el.classList.remove('is-open');
+              const sibLink = el.querySelector('.nav-link');
+              if (sibLink) sibLink.setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          const willOpen = !wasOpen;
+          item.classList.toggle('is-open', willOpen);
+          link.setAttribute('aria-expanded', String(willOpen));
         }
       });
     });
 
+    // Close nav when a real link (not a dropdown parent) is clicked on mobile
     nav.querySelectorAll('a[href]').forEach((a) => {
       a.addEventListener('click', () => {
         const isDropdownParent =
           a.closest('.nav-item.has-dropdown > .nav-link') ||
           a.closest('.nav-item.has-mega > .nav-link');
         if (window.innerWidth <= 900 && !isDropdownParent) {
-          nav.classList.remove('is-open');
-          toggle.innerHTML = '<i class="fas fa-bars"></i>';
+          closeNav();
         }
       });
+    });
+
+    // Auto-close when resizing back up to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900 && nav.classList.contains('is-open')) {
+        closeNav();
+      }
+    });
+
+    // Escape key closes the nav
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+        closeNav();
+      }
+    });
+
+    // Click outside the nav closes it (mobile only)
+    document.addEventListener('click', (e) => {
+      if (
+        window.innerWidth <= 900 &&
+        nav.classList.contains('is-open') &&
+        !nav.contains(e.target) &&
+        !toggle.contains(e.target)
+      ) {
+        closeNav();
+      }
     });
   }
 
@@ -176,8 +244,9 @@
       const items = res.success ? res.data.announcements : [];
       if (items.length) {
         ticker.innerHTML = items
-          .map((a) =>
-            `<a href="/pages/announcements.html" style="color:rgba(255,255,255,0.85);"><i class="fas fa-circle" style="font-size:0.4rem;color:var(--color-emerald);vertical-align:middle;"></i> ${escapeHtml(a.title)}</a>`
+          .map(
+            (a) =>
+              `<a href="/pages/announcements.html" style="color:rgba(255,255,255,0.85);"><i class="fas fa-circle" style="font-size:0.4rem;color:var(--color-emerald);vertical-align:middle;"></i> ${escapeHtml(a.title)}</a>`
           )
           .join('');
       } else {
@@ -411,8 +480,7 @@
   }
 
   /* =========================================================
-     COOKIE CONSENT
-     Loads the banner script and CSS if not on an admin page.
+     COOKIE CONSENT (loaded dynamically)
      ========================================================= */
   function initCookieConsent() {
     if (document.body.dataset.page && document.body.dataset.page.startsWith('admin-')) return;
@@ -440,6 +508,10 @@
     initBackToTop();
     initScrollReveal();
     initCookieConsent();
+
+    // Footer year
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     if (window.Auth) {
       try {
