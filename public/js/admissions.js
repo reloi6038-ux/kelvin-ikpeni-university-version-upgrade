@@ -3,6 +3,9 @@
  * Logic for:
  *   - The application form (pages/apply.html) — programme picker + submit
  *   - The status lookup page (pages/check-status.html)
+ *
+ * Programme fetching pages through the API so the full catalogue is
+ * always available, even for large institutions (1000+ programmes).
  */
 (function () {
   'use strict';
@@ -36,6 +39,23 @@
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
     }[c]));
 
+  /**
+   * Fetch every programme by paging through the API.
+   * Caps at 20 pages × 500 per page = 10,000 programmes to prevent runaway loops.
+   */
+  const fetchAllProgrammes = async () => {
+    const perPage = 500;
+    const maxPages = 20;
+    let all = [];
+    for (let p = 1; p <= maxPages; p++) {
+      const res = await api.public.programmes(`?limit=${perPage}&page=${p}`);
+      if (!res.success || !res.data || !Array.isArray(res.data.programmes) || !res.data.programmes.length) break;
+      all = all.concat(res.data.programmes);
+      if (!res.meta || !res.meta.hasNext) break;
+    }
+    return all;
+  };
+
   /* =================================================
      APPLY PAGE
      ================================================= */
@@ -66,7 +86,7 @@
     let activeLevel = '';
     let searchTerm = '';
 
-    /* ---------- Load all programmes once ---------- */
+    /* ---------- Load all programmes ---------- */
     const loadProgrammes = async () => {
       programmeList.innerHTML = `
         <div class="programme-empty" style="grid-column:1/-1;">
@@ -74,8 +94,7 @@
           <div class="mt-3">Loading programmes…</div>
         </div>`;
 
-      const res = await api.public.programmes('?limit=500');
-      allProgrammes = res.success && res.data && res.data.programmes ? res.data.programmes : [];
+      allProgrammes = await fetchAllProgrammes();
 
       if (!allProgrammes.length) {
         programmeList.innerHTML = `

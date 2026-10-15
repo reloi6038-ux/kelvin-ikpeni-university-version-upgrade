@@ -1,6 +1,8 @@
 /**
  * public/js/main.js
  * Global UI behavior + homepage data loading.
+ * Programme fetches page through the API so the full catalogue
+ * is available regardless of size.
  */
 (function () {
   'use strict';
@@ -51,14 +53,13 @@
   }
 
   /* =========================================================
-     MOBILE NAVIGATION (with full aria-expanded support)
+     MOBILE NAVIGATION
      ========================================================= */
   function initMobileNav() {
     const toggle = document.querySelector('.nav-toggle');
     const nav = document.querySelector('.main-nav');
     if (!toggle || !nav) return;
 
-    // Set up aria-haspopup + aria-expanded on dropdown parents from the start
     const dropdownParents = nav.querySelectorAll(
       '.nav-item.has-dropdown > .nav-link, .nav-item.has-mega > .nav-link'
     );
@@ -81,7 +82,6 @@
       toggle.setAttribute('aria-label', 'Open navigation');
       toggle.innerHTML = '<i class="fas fa-bars"></i>';
       document.body.classList.remove('mobile-nav-open');
-      // Reset all dropdown parents to closed
       nav.querySelectorAll('.nav-item.is-open').forEach((el) => {
         el.classList.remove('is-open');
         const parentLink = el.querySelector('.nav-link');
@@ -94,7 +94,6 @@
       else openNav();
     });
 
-    // Toggle dropdown groups on mobile; also handle desktop (no-op)
     dropdownParents.forEach((link) => {
       link.addEventListener('click', (e) => {
         if (window.innerWidth <= 900) {
@@ -102,7 +101,6 @@
           const item = link.parentElement;
           const wasOpen = item.classList.contains('is-open');
 
-          // Close other open dropdowns
           nav.querySelectorAll('.nav-item.is-open').forEach((el) => {
             if (el !== item) {
               el.classList.remove('is-open');
@@ -118,7 +116,6 @@
       });
     });
 
-    // Close nav when a real link (not a dropdown parent) is clicked on mobile
     nav.querySelectorAll('a[href]').forEach((a) => {
       a.addEventListener('click', () => {
         const isDropdownParent =
@@ -130,21 +127,18 @@
       });
     });
 
-    // Auto-close when resizing back up to desktop
     window.addEventListener('resize', () => {
       if (window.innerWidth > 900 && nav.classList.contains('is-open')) {
         closeNav();
       }
     });
 
-    // Escape key closes the nav
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && nav.classList.contains('is-open')) {
         closeNav();
       }
     });
 
-    // Click outside the nav closes it (mobile only)
     document.addEventListener('click', (e) => {
       if (
         window.innerWidth <= 900 &&
@@ -200,6 +194,22 @@
         }
       });
     });
+  }
+
+  /* =========================================================
+     PROGRAMME FETCH HELPER (pages through all results)
+     ========================================================= */
+  async function fetchAllProgrammes() {
+    const perPage = 500;
+    const maxPages = 20;
+    let all = [];
+    for (let p = 1; p <= maxPages; p++) {
+      const res = await window.API.public.programmes(`?limit=${perPage}&page=${p}`);
+      if (!res.success || !res.data || !Array.isArray(res.data.programmes) || !res.data.programmes.length) break;
+      all = all.concat(res.data.programmes);
+      if (!res.meta || !res.meta.hasNext) break;
+    }
+    return all;
   }
 
   /* =========================================================
@@ -388,6 +398,7 @@
 
     container.dataset.filterReady = '1';
 
+    // Populate faculty dropdown
     const facRes = await window.API.public.faculties();
     if (facRes.success) {
       facRes.data.faculties.forEach((f) => {
@@ -398,9 +409,8 @@
       });
     }
 
-    let allProgrammes = [];
-    const initial = await window.API.public.programmes('?limit=100');
-    if (initial.success) allProgrammes = initial.data.programmes;
+    // Fetch ALL programmes by paging through the API
+    const allProgrammes = await fetchAllProgrammes();
 
     const applyFilters = () => {
       const q = search.value.trim().toLowerCase();
