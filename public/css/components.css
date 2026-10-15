@@ -473,12 +473,53 @@
 }
 .site-header.is-scrolled { box-shadow: var(--shadow-md); }
 
+/* =========================================================
+   HEADER LAYOUT — action buttons on top, then centered title,
+   then centered navigation underneath
+   ========================================================= */
 .header__inner {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--header-height);
+  padding-block: var(--space-3);
+  gap: var(--space-2) var(--space-5);
+}
+
+/* Row 1 — action buttons centered at the very top */
+.header__inner > .header__actions {
+  order: 1;
+  flex-basis: 100%;
+  justify-content: center;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: var(--header-height);
-  gap: var(--space-5);
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+/* Row 2 — logo/title centered below the buttons */
+.header__inner > .logo {
+  order: 2;
+  margin-inline: auto;
+}
+
+/* Row 3 — nav centered under the logo */
+.header__inner > .main-nav {
+  order: 4;
+  flex-basis: 100%;
+  justify-content: center;
+}
+
+/* Hamburger — top-right, only shown on mobile (hidden by media query) */
+.header__inner > .nav-toggle {
+  order: 3;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
 }
 
 .logo {
@@ -491,12 +532,12 @@
 }
 .logo:hover { color: var(--color-primary); }
 .logo__crest {
-  width: 48px; height: 48px;
+  width: 52px; height: 52px;
   border-radius: var(--radius);
   background: var(--gradient-brand);
   color: var(--color-accent);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.25rem; font-weight: 800;
+  font-size: 1.35rem; font-weight: 800;
   box-shadow: var(--shadow-brand);
   position: relative;
   overflow: hidden;
@@ -508,7 +549,7 @@
 }
 .logo__text { display: flex; flex-direction: column; line-height: 1.05; }
 .logo__name {
-  font-size: 1.15rem;
+  font-size: 1.35rem;
   letter-spacing: -0.01em;
   background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   -webkit-background-clip: text;
@@ -517,7 +558,7 @@
 }
 .logo__sub {
   font-family: var(--font-body);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   letter-spacing: var(--ls-widest);
   text-transform: uppercase;
   color: var(--color-text-muted);
@@ -829,23 +870,6 @@
   margin-inline: auto;
 }
 .founder__portrait img { width: 100%; height: 100%; object-fit: cover; }
-
-/* NOTE: The "Temporary Portrait Placeholder" label has been removed.
-   To re-enable it later, uncomment the block below.
-
-.founder__portrait::after {
-  content: 'Temporary Portrait Placeholder';
-  position: absolute;
-  bottom: var(--space-3); left: var(--space-3);
-  background: rgba(0,0,0,0.55);
-  color: #fff;
-  font-size: var(--fs-xs);
-  padding: 0.35rem 0.65rem;
-  border-radius: var(--radius-sm);
-  backdrop-filter: blur(6px);
-  letter-spacing: 0.02em;
-}
-*/
 
 .founder__badge {
   display: inline-flex;
@@ -1212,21 +1236,54 @@
    MOBILE NAVIGATION — refined for small screens
    ========================================================= */
 @media (max-width: 900px) {
+  /* Reset the stacked desktop header to a single compact row */
+  .header__inner {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 0;
+    min-height: 68px;
+    height: 68px;
+    gap: var(--space-3);
+  }
+  .header__inner > .logo {
+    order: 1;
+    margin-inline: 0;
+    position: static;
+    flex-shrink: 0;
+  }
+  .header__inner > .header__actions {
+    order: 2;
+    position: static;
+    transform: none;
+    margin-left: auto;
+    flex-basis: auto;
+    margin-bottom: 0;
+    gap: var(--space-2);
+  }
+  .header__inner > .nav-toggle {
+    order: 3;
+    position: static;
+    transform: none;
+    margin-left: var(--space-2);
+  }
+  .header__inner > .main-nav {
+    order: 4;
+    flex-basis: auto;
+  }
+
   .nav-toggle { display: inline-flex; }
 
-  .header__inner {
-    gap: var(--space-3);
-    height: 68px;
-  }
+  .logo__crest { width: 40px; height: 40px; font-size: 1.05rem; }
+  .logo__name { font-size: 1rem; }
+  .logo__sub { font-size: 0.6rem; letter-spacing: 0.14em; }
+
   .header__actions .btn--ghost { display: none; }
   .header__actions .btn--sm {
     padding: 0.4rem 0.75rem;
     font-size: 0.72rem;
   }
-
-  .logo__crest { width: 40px; height: 40px; font-size: 1.05rem; }
-  .logo__name { font-size: 1rem; }
-  .logo__sub { font-size: 0.6rem; letter-spacing: 0.14em; }
 
   .main-nav {
     position: fixed;
@@ -1247,6 +1304,7 @@
     z-index: var(--z-overlay);
     gap: 0;
     max-height: none;
+    justify-content: flex-start;
   }
   .main-nav.is-open { transform: translateX(0); }
 
@@ -1339,7 +1397,7 @@
 
 /* Extra-small screens (≤ 420px) */
 @media (max-width: 420px) {
-  .header__inner { height: 62px; gap: var(--space-2); }
+  .header__inner { min-height: 62px; height: 62px; gap: var(--space-2); }
   .main-nav { top: 62px; }
   .logo__crest { width: 36px; height: 36px; font-size: 0.95rem; }
   .logo__name { font-size: 0.95rem; }
